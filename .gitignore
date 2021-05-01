@@ -1,0 +1,67 @@
+### Pre-emptive ignores
+
+*.code-workspace
+*.dll
+*.exe
+*.ico
+*.mdmp
+
+# Compiled content
+*.vpk
+*.los
+*.ain
+*.vmdl_c
+*.vmat_c
+*.vtex_c
+*.vsnd_c
+*.vsndevts_c
+*.vpcf_c
+*.vanmgrph_c
+*.vpost_c
+*.vrman_c
+*.bin
+*.exr
+*.vxml_c
+*.vjs_c
+*.vcss_c
+
+/content/hlvr_addons/**/_bakeresourcecache
+/content/hlvr_addons/**/_vrad3
+
+/game/hlvr_addons/**/_bakeresourcecache
+/game/hlvr_addons/**/_buildcubemaps
+/game/hlvr_addons/**/_vrad3
+/game/hlvr_addons/**/save/*
+/game/hlvr_addons/**/tools_thumbnail_cache.bin
+
+### Addons distributed with the tools
+### All users have these addons, they're readonly anyway so they shouldn't be tracked.
+
+/game/hlvr_addons/audio_new_sound
+/game/hlvr_addons/addon_template
+/game/hlvr_addons/custom_character
+/content/hlvr_addons/addon_template
+/content/hlvr_addons/audio_new_sound
+/content/hlvr_addons/custom_character
+
+### Per user ignores
+### Have multiple contributors to your map?
+### Need to ignore addons not relevant to the project?
+### This is where these go. Examples below.
+
+## Ignore the bakeresourcecache and vrad3 folders for all addons
+/game/**/**/_bakeresourcecache
+/game/**/**/_vrad3
+*.vsvg_c
+game/hlvr_addons/warehousetycoon/scripts/vscripts/.vscode/settings.json
+*.nav
+*.sareverb
+*.sapaths
+*.txt
+/content/hlvr_addons/warehousetycoon/models/citizenremake
+/content/hlvr_addons/warehousetycoon/models/ade
+/content/hlvr_addons/warehousetycoon/models/biped_standard
+*.fbx
+/content/hlvr_addons/warehousetycoon/materials/bi_
+/content/hlvr_addons/warehousetycoon/particles/___particles
+*.vxml_c

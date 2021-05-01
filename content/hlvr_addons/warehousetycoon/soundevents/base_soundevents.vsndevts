@@ -1,0 +1,62 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	"warehouse.warehouseintro1" = 
+	{
+		type = "hlvr_update_vo_default"
+		volume = 1.00
+		vsnd_files = 
+		[
+			"sounds/warhouseproject-01.vsnd",
+		]
+	}
+	"warehouse.minerRand" = 
+	{
+		type = "hlvr_ambient_rand"
+		random_soundevent_01_name = "Door_Vault_Metal.Slam"
+		random_soundevent_01_timer_min = 5.000000
+		random_soundevent_01_timer_max = 10.000000
+	}
+	"warehouse.Cable_Stress" =
+	{
+		type = "hlvr_ambient_rand"
+		random_soundevent_01_name = "SubstationCables.Stress"
+		random_soundevent_01_timer_min = 4.000000
+		random_soundevent_01_timer_max = 16.000000
+	}
+	"warehouse.warehouseintro2" = 
+	{
+		type = "hlvr_update_vo_default"
+		volume = 1.00
+		vsnd_files = 
+		[
+			"sounds/warhouseproject-02.vsnd",
+		]
+	}
+	"warehouse.warehouseintro3" = 
+	{
+		type = "hlvr_update_vo_default"
+		volume = 1.00
+		vsnd_files = 
+		[
+			"sounds/warhouseproject-03.vsnd",
+		]
+	}
+	"warehouse.warehouseintro4" = 
+	{
+		type = "hlvr_update_vo_default"
+		volume = 1.00
+		vsnd_files = 
+		[
+			"sounds/warhouseproject-04.vsnd",
+		]
+	}
+	"warehouse.warehouseintro5" = 
+	{
+		type = "hlvr_update_vo_default"
+		volume = 1.5
+		vsnd_files = 
+		[
+			"sounds/goodluck.vsnd",
+		]
+	}
+}

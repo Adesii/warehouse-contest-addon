@@ -1,0 +1,307 @@
+@define textBase:			#00c0ffff;
+@define textLight:			#3dfdfcff;
+@define textDim:			#2dedfa99;
+@define textError:			#ec1c23ff;
+
+@define panelBackground:	#11353F10;
+@define panelCraftingStationForeground:	#15485710;
+@define panelForeground:	#154857cc;
+
+@define buttonDefault:		#11353Fff;
+@define buttonHover:		#00C0FFB3;
+@define buttonActive:		#00a4daff;
+@define buttonInactive:		#00C0FF36;
+
+@define buttonPadding: 10px,0px,0px,0px;
+
+@define textSize: 100px;
+
+@define ButtonWidth : 350px;
+
+
+.ScanlineMask{
+    width: 100%;
+    height: 200%;
+    background-color: panelForeground;
+    opacity-mask: url("s2r://panorama/images/game_menu_ui/menu_type_mask_psd.vtex");
+
+    overflow: noclip; 
+    transform: translateY(0%);
+    transition-property: transform;
+    transition-duration: 0s;
+    transition-timing-function: linear;
+
+    animation-name: ScanlineScroll;
+    animation-duration: 50s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+.Button{
+	
+    width:ButtonWidth;
+    height: width-percentage(20%);
+    
+    margin: buttonPadding;
+    horizontal-align:center;
+
+
+    animation-name: ButtonFlicker;
+	animation-duration: 1s;
+	animation-delay: 0s;
+	animation-timing-function: ease-in-out; 
+	animation-iteration-count: infinite; 
+}
+
+#AnimatedTextureMask{
+	width: 200%;
+	height: 100%;
+	horizontal-align: left;
+	vertical-align: center; 
+    background-color: buttonHover;
+    opacity: 0.1;
+	opacity-mask: url("s2r://panorama/images/hint_ui/game_menu_mask_png_1ffa48a7.vtex") ;
+	overflow: noclip; 
+
+    transform: translateX(0%);
+    transition-property: transform;
+    transition-duration: 0s;
+    transition-timing-function: linear;
+
+    animation-name: backgroundScroll;
+    animation-duration: 10s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+
+
+@keyframes 'backgroundScroll' {
+    0%{
+        transform: translateX(0);
+    }
+    100%{
+        transform: translateX(-100%);
+    }
+}
+@keyframes 'ScanlineScroll' {
+    0%{
+        transform: translateY(0);
+    }
+    100%{
+        transform: translateY(-100%);
+    }
+}
+
+.mainDisplay{
+    opacity: 0.7;
+    width: 100%;
+    height: 100%;
+    background-color: panelForeground;
+    background-color: gradient( radial, 50% 50%, 0% 0%, 100% 100%, from( #0b1113fc ), color-stop( 0.97, #002d4f ), to( #00b3d9 ) );
+    box-shadow: inset #3fcaed18 10px 10px 20px 20px; 
+}
+
+@keyframes 'ButtonFlicker' 
+{
+	0%
+	{
+		brightness: 1.2; 
+	}
+	50%
+	{
+		brightness: 1; 
+
+	}
+	100%
+	{
+		brightness: 1.2; 
+	}
+}	
+
+
+
+
+
+
+
+
+@keyframes 'SelectionAreaFlicker' 
+{
+	0%
+	{
+	opacity: 1;	
+	}
+	3%
+	{
+	opacity: .95;	
+	}
+	5%
+	{
+	opacity: 1;	
+	}
+	8%
+	{
+	opacity: .93;	
+	}
+	10%
+	{
+	opacity: .97;	
+	}
+	11%
+	{
+	opacity: 1;	
+	}
+	14%
+	{
+	opacity: .92;	
+	}
+	15%
+	{
+	opacity: .95;	
+	}
+	17%
+	{
+	opacity: .95;	
+	}
+	18%
+	{
+	opacity: 1;	
+	}
+	21%
+	{
+	opacity: .92;	
+	}
+	24%
+	{
+	opacity: .95;	
+	}
+	26%
+	{
+	opacity: .93;	
+	}
+	29%
+	{
+	opacity: .88;	
+	}
+	30%
+	{
+	opacity: 1;	
+	}
+	33%
+	{
+	opacity: .99;	
+	}
+	35%
+	{
+	opacity: .94;	
+	}
+	36%
+	{
+	opacity: 1;	
+	}
+	38%
+	{
+	opacity: .9;	
+	}
+	39%
+	{
+	opacity: .95;	
+	}
+	41%
+	{
+	opacity: .9;	
+	}
+	44%
+	{
+	opacity: 1;
+	}
+	46%
+	{
+	opacity: .93;	
+	}
+	48%
+	{
+	opacity: .9;	
+	}
+	50%
+	{
+	opacity: 1;	
+	}
+	53%
+	{
+	opacity: 1;	
+	}
+	55%
+	{
+	opacity: 1;	
+	}
+	58%
+	{
+	opacity: .9;	
+	}
+	59%
+	{
+	opacity: .91;	
+	}
+	61%
+	{
+	opacity: .97;	
+	}
+	65%
+	{
+	opacity: 1;	
+	}
+	68%
+	{
+	opacity: 1;	
+	}
+	73%
+	{
+	opacity: 1;	
+	}
+	75%
+	{
+	opacity: 1;	
+	}
+	80%
+	{
+	opacity: .96;	
+	}
+	82%
+	{
+	opacity: .95;	
+	}
+	85%
+	{
+	opacity: .89;	
+	}
+	88%
+	{
+	opacity: .99;	
+	}
+	90%
+	{
+	opacity: 1;	
+	}
+	92%
+	{
+	opacity: .96;	
+	}
+	95%
+	{
+	opacity: .9;	
+	}
+	96%
+	{
+	opacity: .9;	
+	}
+	98%
+	{
+	opacity: .92;	
+	}
+	100%
+	{
+	opacity: 1;
+	}
+}

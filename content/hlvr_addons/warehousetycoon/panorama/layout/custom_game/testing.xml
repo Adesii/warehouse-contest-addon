@@ -1,0 +1,13 @@
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/base_styles.vcss_c" />
+        <include src="s2r://panorama/styles/language_shared.vcss_c" />
+    </styles>
+    <scripts>
+        <include src="file://{resources}/scripts/custom_game/testin.js"/>
+    </scripts>
+    
+	<Panel class="MainMenu" >
+        <Label text="org text" id="test"/>
+    </Panel>
+</root>

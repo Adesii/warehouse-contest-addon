@@ -1,0 +1,82 @@
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/base_styles.vcss_c" />
+        <include src="s2r://panorama/styles/language_shared.vcss_c" />
+        <include src="file://{resources}/styles/custom_game/common.css"/>
+        <include src="file://{resources}/styles/custom_game/machineupgrader.css"/>
+    </styles>
+    <scripts>
+        <include src="file://{resources}/scripts/custom_game/machineupgrader.js"/>
+    </scripts>
+    <snippets>
+        <snippet name="CategoryHeader">
+            <Button class="Category">
+                <Label class="CategoryHeading" text="Testing"/>
+                <Label class="CategoryPrice" text="Price:">
+                    <Label class="CategoryCurrentPrice" text="100"/>
+                </Label>
+            </Button>
+        </snippet>
+        <snippet name="UpgradeCategoryHeader">
+            <Button class="Category">
+                <Label class="CategoryHeading" text="Testing"/>
+                <Label class="Tier" text="CurrentTier: ">
+                    <Label class="CurrentTier" text="1"/>
+                </Label>
+                <Label class="CategoryPrice" text="Price:">
+                    <Label class="CategoryCurrentPrice" text="100"/>
+                </Label>
+            </Button>
+        </snippet>
+        <snippet name="CategoryItem">
+            <Panel class="Category">
+                <Label class="Resourceitem" text="Testing"/>
+                <Label class="ResourceitemCount" text="otherTest"/>
+            </Panel>
+        </snippet>
+    </snippets>
+	<Panel class="MainMenu">
+        
+        <Panel id="ConsoleInterior" >
+            <Panel id="MoneyCounter">
+                <Label class="moneyName" text="Combine Tokens:"/>
+                <Label id="currmoneycount" class="mouneyCount" text="0"/>
+            </Panel>
+            <Panel class="MenuButtonCollection" id="menuCollection">
+                    <Panel class="Button Menu nobuilding" id="build">
+                        <Label class="ButtonText" onactivate="GoDeeper('buildmenu')" text="Build" />
+                        <Panel class="Arrow"/>
+                    </Panel>
+                    <Panel class="Button Menu hasbuilding" id="upgrade">
+                        <Label class="ButtonText" onactivate="GoDeeper('upgrademenu')"  text="Upgrade" />
+                        <Panel class="Arrow"/>
+                    </Panel>
+                    <Panel class="Button Menu hasbuilding">
+                        <Label class="ButtonText"  text="Close" />
+                    </Panel>
+	    	        <Panel class="Button Menu hasbuilding">
+                        <Label class="ButtonText Destroy"  text="Sell" />
+                        </Panel>
+                    </Panel>
+                <Panel class="ExpandableMenu" id="buildmenu">
+                    <Panel id="ExpandableBuildCollection" class="ExpandableCollection">
+                    </Panel>
+                    <Panel class="ExpandableButton" onactivate="GetOut('buildmenu')">
+                            <Panel class="Arrow left"/>
+                    </Panel>
+                </Panel>
+                <Panel class="ExpandableMenu" id="upgrademenu">
+                    <Panel id="ExpandableUpgradeCollection" class="ExpandableCollection">
+                        
+                    </Panel>
+                    <Panel class="ExpandableButton" onactivate="GetOut('upgrademenu')">
+                            <Panel class="Arrow left"/>
+                    </Panel>
+                </Panel>
+        </Panel>
+        
+        <Image id="CombineLogo" src="s2r://panorama/images/upgrade_station_ui/combine_logo_psd.vtex"/>  
+        <Panel class="ScanlineMask"/>
+        <Panel id="AnimatedTextureMask" acceptsinput="false" hittest="false"/>	
+    </Panel>
+</root>

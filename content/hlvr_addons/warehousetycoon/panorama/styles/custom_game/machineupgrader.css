@@ -1,0 +1,473 @@
+@define textBase:			#00c0ffff;
+@define textLight:			#3dfdfcff;
+@define textDim:			#2dedfa99;
+@define textError:			#ec1c23ff;
+
+@define panelBackground:	#11353F10;
+@define panelCraftingStationForeground:	#15485710;
+@define panelForeground:	#154857cc;
+
+@define buttonDefault:		#11353Fff;
+@define buttonHover:		#00C0FFB3;
+@define buttonActive:		#00a4daff;
+@define buttonInactive:		#00C0FF36;
+
+@define buttonPadding: 10px,0px,0px,0px;
+
+@define textSize: 100px;
+
+@define ButtonWidth : 350px;
+
+
+.MainMenu{
+    background-color: panelForeground;
+    background-color: gradient( radial, 50% 50%, 0% 0%, 100% 100%, from( #0b1113fc ), color-stop( 0.97, #002d4f ), to( #00b3d9 ) );
+    box-shadow: inset #3fcaed18 10px 10px 20px 20px; 
+    pre-transform-scale2d:0;
+	
+    transition-property: pre-transform-scale2d;
+    transition-delay: 0s;
+    transition-duration: 0s;
+}
+
+
+
+.Button.Menu{
+    background-color: #126e8acc;
+}
+#ConsoleInterior {
+    opacity: 0;
+    width: 100%;
+	height:100%;
+}
+
+
+.Arrow{
+    background-color: buttonActive;
+    horizontal-align:right;
+    height: 100%;
+    width: height-percentage(100%);
+    opacity-mask: url("s2r://panorama/images/weapon_select_ui/weapon_swap_icon_right_psd.vtex");
+}
+.Button Label{
+    height: 100%;
+    width: 100%;
+    horizontal-align:center;
+    text-align: center;
+    font-size: textSize;
+    text-overflow: shrink;
+
+    animation-name: TextMotionFlicker;
+	animation-duration: 1s;
+	animation-delay: 0s;
+	animation-timing-function: linear; 
+	animation-iteration-count: infinite; 
+}
+
+.ButtonText{
+    border-radius: 5%;
+    border-width: 5%;
+    color: textBase;
+}
+.ButtonText.Destroy{
+    color: textError;
+}
+
+#menuCollection{
+    width: fit-children;
+    height: fit-children;
+    flow-children:down;
+    horizontal-align:center;
+    vertical-align: center;
+    background-color: panelForeground;
+
+	transform: translateX(0);
+	transition-property: transform;
+	transition-delay: 0s;
+	transition-duration: 1s;
+
+}
+#menuCollection.close{
+	transform: translateX(-1000px);
+}
+.ExpandableMenu {
+	vertical-align: center;
+	horizontal-align:center;
+	width: 90%;
+    height: 65%;
+    brightness:2;
+	background-color: panelForeground;
+
+	transform: translateX(1000px);
+	transition-property: transform;
+	transition-delay: 0s;
+	transition-duration: 1s;
+}
+.ExpandableMenu.open{
+	transform: translateX(0);
+}
+.ExpandableMenu Label{
+	font-size: 50px;
+}
+#CombineLogo{
+    width: 150px;
+    height: width-percentage(100%);
+
+	horizontal-align:center;
+	vertical-align:center;
+
+	opacity: 1;
+
+	transition-property: transform, opacity;
+	transition-duration: 1s;
+	transition-delay: 0s;
+
+    margin: 5%;
+}
+#ConsoleInterior{
+    opacity: 1;
+}
+
+
+.playerNear #ConsoleInterior{
+    opacity: 1;
+
+    animation-name: DelayApperanceAnimationInterior;
+	animation-duration: 1s;
+	animation-delay: 0s;
+	animation-timing-function: ease-in-out; 
+	animation-iteration-count: 1; 
+
+}
+.playerFar #ConsoleInterior{
+    opacity: 0;
+
+    animation-name: DelayDissapearingAnimationInterior;
+	animation-duration: 0.1s;
+	animation-delay: 0s;
+	animation-timing-function: ease-in-out; 
+	animation-iteration-count: 1; 
+}
+
+
+.playerNear #CombineLogo{
+	opacity: 0.3;
+	transform: translateY(40%) translateX(30%);
+
+	animation-name: CombineLogoIntro;
+	animation-duration: 1s;
+	animation-delay: 0s;
+	animation-timing-function: ease-in-out; 
+	animation-iteration-count: 1; 
+}
+.playerFar #CombineLogo{
+	opacity: 0;
+	transform: translateY(0) translateX(0);
+
+	animation-name: CombineLogoOutro;
+	animation-duration: 0.8s;
+	animation-delay: 0s;
+	animation-timing-function: ease-in-out; 
+	animation-iteration-count: 1; 
+}
+
+
+.playerNear{
+
+    animation-name: FadeIn;
+    animation-delay: 0s;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 1; 
+
+    opacity: 1;
+    pre-transform-scale2d:1;
+}
+
+.playerFar{
+    
+    opacity: 0;
+    pre-transform-scale2d:0;
+
+    animation-name: FadeOut;
+    animation-delay: 0s;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 1;
+}
+
+
+
+.HasBuilding .nobuilding{
+    visibility: collapse;
+}
+.HasBuilding .hasbuilding{
+    visibility: visible;
+}
+.nobuilding{
+    visibility: visible;
+}
+.hasbuilding{
+    visibility: collapse;
+}
+
+
+#MoneyCounter{
+    flow-children:right;
+    horizontal-align:center;
+    vertical-align: top;
+    margin-top: 10%;
+    width: 90%;
+    height: fit-children;
+    background-color: buttonDefault;
+}
+#MoneyCounter Label{
+    font-size: 100px;
+    vertical-align: center;
+    margin-left: 2%;
+    color: textLight;
+    text-overflow: shrink;
+    width: 50%;
+    height: 50px;
+}
+.mouneyCount{
+    horizontal-align:right;
+    text-align: right;
+}
+.ExpandableCollection{
+    width: 100%;
+    height: 100%;
+    margin: 5%;
+    margin-bottom: 22%;
+    horizontal-align: center;
+    vertical-align: center;
+    background-color: rgb(28, 100, 129);
+    flow-children:down;
+}
+.ExpandableButton{
+    height: 70px;
+    width: 100%;
+    vertical-align: bottom;
+    background-color: rgb(22, 118, 156);
+    margin: 5%;
+}
+.Arrow.left{
+    horizontal-align:left;
+    transform: rotateZ(180deg); 
+}
+
+.Category{
+    width: 100%;
+    height: fill-parent-flow(1);
+    text-align: center;
+    margin: 1%;
+    background-color: rgba(110, 175, 201, 0.356);
+    color: textBase;
+    flow-children:down;
+}
+.Category .CategoryHeading{
+    background-color: #0000008f;
+    width: 100%;
+    text-align:center;
+}
+.Category .CategoryPrice,.Tier{
+    width: 100%;
+    font-size: 40px;
+    color: textDim;
+    vertical-align: center;
+}
+.Category .CategoryPrice .CategoryCurrentPrice,.CurrentTier{
+    horizontal-align:right;
+    text-align: right;
+}
+.Category:hover{
+    brightness: 5;
+    background-color: green;
+}
+.CantAfford{
+    background-color: rgba(255, 0, 0, 0.473);
+    color: red;
+    
+}
+
+
+
+
+
+
+
+
+
+/*  Animations: */
+@keyframes 'TextMotionFlicker' 
+{
+	0%
+	{
+		brightness: 2; 
+	}
+	50%
+	{
+		brightness: 8; 
+
+	}
+	100%
+	{
+		brightness: 2; 
+	}
+}	
+
+
+@keyframes 'DelayApperanceAnimationInterior' 
+{
+	0%
+	{
+        pre-transform-scale2d:0;
+		opacity: 0; 
+	}
+	70%{
+        opacity: 0;
+    }
+	80%
+	{
+        
+		opacity: 0.8; 
+        
+	}
+	
+	100%
+	{
+        pre-transform-scale2d:1;
+		opacity: 1; 
+	}
+}
+@keyframes 'DelayDissapearingAnimationInterior' 
+{
+	0%
+	{
+        pre-transform-scale2d:1;
+		opacity: 1; 
+	}
+	100%{
+        pre-transform-scale2d:0;
+        opacity: 0;
+    }
+}
+
+
+@keyframes 'FadeIn' {
+    0%{
+        pre-transform-scale2d:0;
+        opacity: 0;
+    }
+    20%{
+        opacity: 0.2;
+        brightness:3;
+    }
+    30%{
+        opacity: 0.3;
+    }
+    50%{
+        pre-transform-scale2d:1;
+        opacity: 0.6;
+        brightness:1;
+    }
+    100%{
+        pre-transform-scale2d:1;
+        opacity: 1;
+    }
+}
+@keyframes 'FadeOut' {
+    0%{
+        pre-transform-scale2d:1;
+        height: 100%;
+        opacity: 1;
+    }
+    5%{
+        pre-transform-scale2d:0.9;
+    }
+    20%{
+        
+        opacity: 0.8;
+        brightness:3;
+    }
+    30%{
+        pre-transform-scale2d:1;
+        opacity: 0.7;
+    }
+    50%{
+        opacity: 0.4;
+        brightness:1;
+        pre-transform-scale2d:1;
+    }
+    100%{
+        height: 0px;
+        opacity: 0;
+        pre-transform-scale2d:0;
+    }
+}
+
+@keyframes 'CombineLogoIntro' {
+	0%{
+		opacity: 0;
+		pre-transform-scale2d:5;
+		transform: translateY(0) translateX(0);
+	}
+	20%{
+		opacity: 1;
+		pre-transform-scale2d:3;
+	}
+	60%{
+		opacity: 0.3;
+		pre-transform-scale2d:1;
+		transform: translateY(40%) translateX(0);
+	}
+	70%{
+		transform: translateY(40%) translateX(0);
+	}
+	100%{
+		pre-transform-scale2d:1;
+		transform: translateY(40%) translateX(30%);
+	}
+}
+@keyframes 'CombineLogoOutro' {
+	0%{
+		opacity: 0.3;
+		pre-transform-scale2d:1;
+		transform: translateY(40%) translateX(30%);
+		
+		
+	}
+	10%{
+		opacity: 1;
+		transform: translateY(40%) translateX(0);
+		
+	}
+	20%{
+		pre-transform-scale2d:1;
+		transform: translateY(40%) translateX(0);
+	}
+	30%{
+		pre-transform-scale2d:3;
+		transform: translateY(0) translateX(0);
+	}
+	70%{
+		opacity: 0;
+	}
+	100%{
+		pre-transform-scale2d:5;
+		transform: translateY(0) translateX(0);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

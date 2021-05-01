@@ -1,0 +1,37 @@
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/base_styles.vcss_c" />
+        <include src="s2r://panorama/styles/language_shared.vcss_c" />
+        <include src="file://{resources}/styles/custom_game/common.css"/>
+    </styles>
+    
+	<ClientUIDialogPanel class="TextContainer">
+		<Panel id="paneltext" class="TextLine">
+			<Panel class="TextBox">
+				<Label text="Welcome" />
+            </Panel>
+            <Panel id="shop" class="TextBox showshop">
+                <Label text="Please Select the Ammo you want to buy"/>
+            </Panel>
+            <Panel id="TestID" class="prefix_something111">
+            </Panel>
+            <Panel class="prefix_something112">
+            </Panel>
+            <Panel class="prefix_something113">
+            </Panel>
+            <Panel class="prefix_something114">
+            </Panel>
+            <Panel class="buttons">
+                <Button class="buttonselect" onactivate="someting('0')"><Label class="buttLab" text="Pistol"/></Button>
+                <Button class="buttonselect" onactivate='someting("2")'><Label class="buttLab" text="Shotgun"/></Button>
+                <Button class="buttonselect" onactivate='someting("1")'><Label class="buttLab" text="SMG"/></Button>
+                
+            </Panel>
+            <Panel class="buyButton">
+                <Button class="something" onactivate='someting("3");'><Label class="buybutton" text="BUY"/></Button>
+            </Panel>
+            
+        </Panel>
+    </ClientUIDialogPanel>
+    
+</root>

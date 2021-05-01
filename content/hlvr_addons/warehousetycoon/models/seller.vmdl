@@ -1,0 +1,266 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:modeldoc28:version{fb63b6ca-f435-4aa0-a2c7-c66ddc651dca} -->
+{
+	rootNode = 
+	{
+		_class = "RootNode"
+		children = 
+		[
+			{
+				_class = "MaterialGroupList"
+				children = 
+				[
+					{
+						_class = "DefaultMaterialGroup"
+						remaps = 
+						[
+							{
+								from = "glass.vmat"
+								to = "materials/models/props_combine/combine_health_charger_glass.vmat"
+							},
+							{
+								from = "glow.vmat"
+								to = "materials/timer.vmat"
+							},
+							{
+								from = "main.vmat"
+								to = "materials/combine/combine_wall_hs01a.vmat"
+							},
+						]
+						use_global_default = false
+						global_default_material = ""
+					},
+				]
+			},
+			{
+				_class = "RenderMeshList"
+				children = 
+				[
+					{
+						_class = "RenderMeshFile"
+						filename = "models/exports/seller.dmx"
+						import_scale = 1.0
+						import_filter = 
+						{
+							exclude_by_default = false
+							exception_list = [  ]
+						}
+					},
+				]
+			},
+			{
+				_class = "AnimationList"
+				children = 
+				[
+					{
+						_class = "AnimFile"
+						name = "sl_idle_additive"
+						activity_name = ""
+						activity_weight = 1
+						weight_list_name = ""
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = true
+						delta = false
+						worldSpace = false
+						hidden = false
+						anim_markup_ordered = false
+						disable_compression = false
+						source_filename = "models/exports/anims/seller/sl_idle_additive.dmx"
+						start_frame = -1
+						end_frame = -1
+						framerate = -1.0
+						reverse = false
+					},
+					{
+						_class = "AnimFile"
+						name = "sl_ref"
+						activity_name = ""
+						activity_weight = 1
+						weight_list_name = ""
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = false
+						anim_markup_ordered = false
+						disable_compression = false
+						source_filename = "models/exports/anims/seller/sl_ref.dmx"
+						start_frame = -1
+						end_frame = -1
+						framerate = -1.0
+						reverse = false
+					},
+				]
+				default_root_bone_name = ""
+			},
+			{
+				_class = "GameDataList"
+				children = 
+				[
+					{
+						_class = "GenericGameData"
+						game_class = "particle"
+						game_keys = 
+						{
+							name = resource:"particles/seller_goo.vpcf"
+							attachment_point = "goo"
+							attachment_type = "point_follow"
+							attachment_offset = [ 0.0, 0.0, 0.0 ]
+						}
+					},
+					{
+						_class = "GenericGameData"
+						game_class = "particle"
+						game_keys = 
+						{
+							name = resource:"particles/seller_ball.vpcf"
+							attachment_point = "ball"
+							attachment_type = "point_follow"
+							attachment_offset = [ 0.0, 0.0, 100.0 ]
+						}
+					},
+				]
+			},
+			{
+				_class = "AttachmentList"
+				children = 
+				[
+					{
+						_class = "Attachment"
+						name = "goo"
+						parent_bone = "Root"
+						relative_origin = [ 0.0, 86.754715, 0.002618 ]
+						relative_angles = [ 0.0, 0.0, 0.0 ]
+						weight = 1.0
+						ignore_rotation = false
+					},
+					{
+						_class = "Folder"
+						name = "base"
+						children = 
+						[
+							{
+								_class = "Attachment"
+								name = "IO"
+								parent_bone = "Root"
+								relative_origin = [ 36.629303, 12.418626, 0.000376 ]
+								relative_angles = [ 0.0, 90.0, 0.0 ]
+								weight = 1.0
+								ignore_rotation = false
+							},
+							{
+								_class = "Attachment"
+								name = "WALK"
+								parent_bone = "Root"
+								relative_origin = [ 84.454742, 0.0, 0.0 ]
+								relative_angles = [ 0.0, 0.0, 0.0 ]
+								weight = 1.0
+								ignore_rotation = false
+							},
+						]
+					},
+					{
+						_class = "Attachment"
+						name = "ball"
+						parent_bone = "Root"
+						relative_origin = [ 0.0, 124.850632, 0.003776 ]
+						relative_angles = [ 0.0, 0.0, 0.0 ]
+						weight = 1.0
+						ignore_rotation = false
+					},
+				]
+			},
+			{
+				_class = "PhysicsShapeList"
+				children = 
+				[
+					{
+						_class = "PhysicsShapeBox"
+						parent_bone = "Root"
+						surface_prop = "default"
+						collision_prop = "default"
+						origin = [ 46.238758, 19.553688, 45.6726 ]
+						angles = [ 0.0, 0.0, 0.0 ]
+						dimensions = [ 33.272171, 40.107376, 36.757523 ]
+					},
+					{
+						_class = "PhysicsShapeBox"
+						parent_bone = "Root"
+						surface_prop = "default"
+						collision_prop = "default"
+						origin = [ 33.3041, 19.553699, -45.6726 ]
+						angles = [ 0.0, 0.0, 0.0 ]
+						dimensions = [ 59.141533, 40.107376, 36.757523 ]
+					},
+					{
+						_class = "PhysicsShapeBox"
+						parent_bone = "Root"
+						surface_prop = "default"
+						collision_prop = "default"
+						origin = [ 57.966442, 19.553699, -0.168385 ]
+						angles = [ 0.0, 0.0, 0.0 ]
+						dimensions = [ 9.816843, 40.107376, 70.973419 ]
+					},
+					{
+						_class = "PhysicsShapeBox"
+						parent_bone = "Root"
+						surface_prop = "default"
+						collision_prop = "default"
+						origin = [ 46.481991, 20.524755, -0.168227 ]
+						angles = [ 0.000542, -18.098604, -0.000086 ]
+						dimensions = [ 2.980481, 56.751495, 70.973419 ]
+					},
+					{
+						_class = "PhysicsShapeBox"
+						parent_bone = "Root"
+						surface_prop = "default"
+						collision_prop = "default"
+						origin = [ 39.428013, 25.068007, 18.640087 ]
+						angles = [ -32.238331, -12.532836, 13.063963 ]
+						dimensions = [ 29.404182, 53.218163, 5.474007 ]
+					},
+					{
+						_class = "PhysicsShapeBox"
+						parent_bone = "Root"
+						surface_prop = "default"
+						collision_prop = "default"
+						origin = [ 31.042891, 47.101204, 0.542069 ]
+						angles = [ 0.0, -17.207373, 0.0 ]
+						dimensions = [ 3.099929, 14.666763, 32.286484 ]
+					},
+					{
+						_class = "PhysicsShapeBox"
+						parent_bone = "Root"
+						surface_prop = "default"
+						collision_prop = "default"
+						origin = [ -16.790457, 84.908585, -0.01576 ]
+						angles = [ 0.0, 0.0, 0.0 ]
+						dimensions = [ 92.40213, 171.129059, 125.678268 ]
+					},
+					{
+						_class = "PhysicsShapeBox"
+						parent_bone = "Root"
+						surface_prop = "default"
+						collision_prop = "default"
+						origin = [ 37.953495, 25.173834, -19.404173 ]
+						angles = [ 33.272442, -16.704615, -12.65743 ]
+						dimensions = [ 26.215084, 53.218163, 5.474007 ]
+					},
+					{
+						_class = "PhysicsShapeBox"
+						parent_bone = "Root"
+						surface_prop = "default"
+						collision_prop = "default"
+						origin = [ 30.773428, 4.114053, -0.084028 ]
+						angles = [ 0.0, 0.0, 0.0 ]
+						dimensions = [ 22.783875, 9.228106, 30.972731 ]
+					},
+				]
+			},
+		]
+		model_archetype = "animated_model"
+		primary_associated_entity = "npc_furniture"
+		anim_graph_name = "animgraphs/seller.vanmgrph"
+	}
+}

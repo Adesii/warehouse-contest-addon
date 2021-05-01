@@ -1,0 +1,30 @@
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/base_styles.vcss_c" />
+        <include src="s2r://panorama/styles/language_shared.vcss_c" />
+        <include src="file://{resources}/styles/custom_game/common.css"/>
+        <include src="file://{resources}/styles/custom_game/maindisplay.css"/>
+    </styles>
+    <scripts>
+        <include src="file://{resources}/scripts/custom_game/mainDisplay.js"/>
+    </scripts>
+    
+	<Panel class="mainDisplay">
+        <Panel class="idk">
+            <Panel id="MoneyCounter">
+                <Label class="moneyName" text="Combine Tokens:"/>
+                <Label id="currmoneycount" class="mouneyCount" text="0"/>
+            </Panel>
+            <Panel class="ProgressPanel">
+                <Panel id="idReachedMax" class="reachedMax hide">
+                    <Label  class="reachedMaxText" text="MAX RESOURCES REACHED!"/>
+                    <Panel class="reachedMaxPanel"/>
+                </Panel>
+                <ProgressBar id="progress"/>
+            </Panel>
+            <Image class="CombineLogo" src="s2r://panorama/images/upgrade_station_ui/combine_logo_psd.vtex"/>  
+            <Panel class="ScanlineMask"/>
+            <Panel id="AnimatedTextureMask" acceptsinput="false" hittest="false"/>	
+        </Panel>
+    </Panel>
+</root>

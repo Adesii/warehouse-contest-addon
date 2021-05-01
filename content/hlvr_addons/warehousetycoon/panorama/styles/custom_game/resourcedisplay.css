@@ -1,0 +1,52 @@
+#ResourceDisplay,
+.mainDisplay,
+.ProgressPanel,
+.idk
+{
+    width: 100%;
+    height: 100%;
+}
+.mainDisplay{
+    opacity: 0.9;
+    background-color: gradient( radial, 50% 50%, 0% 0%, 200% 50%, from( #0b1113fc ), color-stop( 0.97, #002d4f ), to( #00b3d9 ) );
+}
+
+.CombineLogo{
+    margin: 5%;
+    horizontal-align:right;
+    vertical-align: bottom;
+}
+#ResourceDisplay{
+    flow-children:down;
+}
+.Resource{
+    opacity: 1;
+    width: 100%;
+    height: 600px;
+    horizontal-align:center;
+    vertical-align: top;
+    background-color: rgb(0, 225, 255);
+    margin-top: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.ResourceitemCount,
+.Resourceitem{
+    width: 100%;
+    height: 100%;
+    text-overflow: shrink;
+    vertical-align: center;
+    text-align: center;
+    font-size: 300px;
+    color: rgb(0, 30, 128);
+}
+.ResourceitemCount{
+    text-align:right;
+    margin: 5%;
+}
+.Resourceitem{
+    text-align:left;
+    margin: 5%;
+
+}

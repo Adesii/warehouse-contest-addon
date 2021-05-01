@@ -1,0 +1,33 @@
+// THIS FILE IS AUTO-GENERATED
+
+Layer0
+{
+	shader "vr_wireframe_hologram.vfx"
+
+	//---- Animation ----
+	F_MORPH_SUPPORTED 1
+
+	//---- Fast hologram allowed (no GS) ----
+	F_FAST_HOLOGRAM_ALLOWED 1
+
+	//---- Rendering ----
+	F_DO_NOT_CAST_SHADOWS 1
+
+	//---- Color ----
+	TextureColor "[1.000000 1.000000 1.000000 0.000000]"
+
+	//---- Fog ----
+	g_bFogEnabled "1"
+
+	//---- Hologram ----
+	g_flFadeEndDistance "1000.000"
+	g_flFadeStartDistance "1000.000"
+	g_flFresnelExponent "4.263"
+	g_flLineWidth "7.525"
+	g_vHologramColor "[0.600000 0.784314 0.886275 0.000000]"
+
+	DynamicParams
+	{
+		g_vHologramColor "float4(0,3,abs(clamp(cos((time*random(1,4)))*15,5,100))+5,255)"
+	}
+}

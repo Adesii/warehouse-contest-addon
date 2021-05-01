@@ -1,0 +1,31 @@
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/base_styles.vcss_c" />
+         <include src="file://{resources}/styles/custom_game/common.vcss_c"/>
+        <include src="s2r://panorama/styles/language_shared.vcss_c"/>
+        <include src="file://{resources}/styles/custom_game/resourcedisplay.vcss_c"/>
+    </styles>
+    <scripts>
+        <include src="file://{resources}/scripts/custom_game/resourcedisplay.js"/>
+    </scripts>
+    <snippets>
+        <snippet name="ResourceItems">
+            <Panel class="Resource">
+                <Label class="Resourceitem" text="Testing"/>
+                <Label class="ResourceitemCount" text="otherTest"/>
+            </Panel>
+
+        </snippet>
+    </snippets>
+    
+	<Panel class="mainDisplay">
+        <Panel class="idk">
+            <Panel id="ResourceDisplay">
+            </Panel>
+            <Image class="CombineLogo" src="s2r://panorama/images/upgrade_station_ui/combine_logo_psd.vtex"/>  
+            
+        </Panel>
+        <Panel class="ScanlineMask"/>
+        <Panel id="AnimatedTextureMask" acceptsinput="false" hittest="false"/>	
+    </Panel>
+</root>

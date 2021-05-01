@@ -1,0 +1,130 @@
+@define textBase:			#00c0ffff;
+@define textLight:			#3dfdfcff;
+@define textDim:			#2dedfa99;
+@define textError:			#ec1c23ff;
+
+@define panelBackground:	#11353F10;
+@define panelCraftingStationForeground:	#15485710;
+@define panelForeground:	#154857cc;
+
+@define buttonDefault:		#11353Fff;
+@define buttonHover:		#00C0FFB3;
+@define buttonActive:		#00a4daff;
+@define buttonInactive:		#00C0FF36;
+
+@define buttonPadding: 10px,0px,0px,0px;
+
+@define textSize: 100px;
+
+@define ButtonWidth : 350px;
+
+.idk{
+    width: 100%;
+    height: 100%;
+}
+.ProgressPanel{
+    horizontal-align: center;
+    vertical-align: bottom;
+    margin-bottom: 20%;
+	width: 90%;
+	height: 40%;
+}
+.reachedMax{
+    width: 100%;
+	height: 50%;
+}
+.reachedMaxPanel{
+    width: 100%;
+	height: 70%;
+    opacity : 0.1;
+    brightness:1;
+    background-color:red;
+    border-radius:10%;
+    transition-property: brightness;
+    transition-duration: 1s;
+    animation-name: ReachedMaxPulse;
+    animation-delay: 0s;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+.reachedMaxText{
+    height:100%;
+    width:100%;
+    font-size: 400px;
+    text-overflow: shrink;
+    text-align: center;
+    vertical-align: center;
+    horizontal-align:center;
+}
+
+@keyframes 'ReachedMaxPulse' {
+    0%{
+        brightness:1;
+    }
+    50%{
+        brightness:2;
+    }
+    100%{
+        brightness:1;
+    }
+}
+
+#progress
+{
+	width: 100%;
+	height: 50%;
+	margin-top: 10px;
+	horizontal-align: center;
+    vertical-align: bottom;
+	border: 100px solid textLight;
+	margin-bottom: 20px;
+}
+
+#progress .ProgressBarLeft
+{
+	background-color: textBase;
+	transition-property: width;
+	transition-duration: 0.1s;
+}
+
+#progress .ProgressBarRight
+{
+	//background-color: panelBackground;
+}
+.CombineLogo{
+    width: 600px;
+    height: width-percentage(100%);
+
+	horizontal-align:right;
+	vertical-align:bottom;
+
+	opacity: 1;
+}
+
+
+.hide{
+    visibility:collapse;
+}
+#MoneyCounter{
+    flow-children:right;
+    horizontal-align:center;
+    vertical-align: top;
+    margin-top: 10%;
+    width: 90%;
+    height: fit-children;
+    background-color: buttonDefault;
+}
+#MoneyCounter Label{
+    font-size: 300px;
+    vertical-align: center;
+    margin-left: 2%;
+    color: textLight;
+    text-overflow: shrink;
+    width: 50%;
+    height: 360px;
+}
+.mouneyCount{
+    horizontal-align:right;
+    text-align: right;
+}

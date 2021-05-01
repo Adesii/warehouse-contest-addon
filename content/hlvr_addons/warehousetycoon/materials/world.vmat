@@ -7,11 +7,9 @@ Layer0
 	//---- Animation ----
 	F_MORPH_SUPPORTED 1
 
-	//---- Fast hologram allowed (no GS) ----
-	F_FAST_HOLOGRAM_ALLOWED 1
-
 	//---- Rendering ----
 	F_DO_NOT_CAST_SHADOWS 1
+	F_RENDER_BACKFACES 1
 
 	//---- Color ----
 	TextureColor "[1.000000 1.000000 1.000000 0.000000]"
@@ -22,8 +20,8 @@ Layer0
 	//---- Hologram ----
 	g_flFadeEndDistance "1000.000"
 	g_flFadeStartDistance "1000.000"
-	g_flFresnelExponent "4.263"
-	g_flLineWidth "7.525"
+	g_flFresnelExponent "11.200"
+	g_flLineWidth "10.000"
 	g_vHologramColor "[0.600000 0.784314 0.886275 0.000000]"
 
 	DynamicParams

@@ -1,0 +1,66 @@
+// THIS FILE IS AUTO-GENERATED
+
+Layer0
+{
+	shader "vr_simple_3layer_parallax.vfx"
+
+	//---- Color ----
+	g_flModelTintAmount "1.000"
+	g_vColorTint "[1.000000 1.000000 1.000000 0.000000]"
+
+	//---- Fade ----
+	g_flFadeExponent "1.000"
+
+	//---- Fog ----
+	g_bFogEnabled "1"
+
+	//---- Lighting ----
+	g_flDirectionalLightmapMinZ "0.050"
+	g_flDirectionalLightmapStrength "1.000"
+
+	//---- Material 0 ----
+	g_flFace0Displacement "0.000"
+	g_flMaterial0TintAmount "1.000"
+	g_flMetalnessA "1.000"
+	g_vTexCoordOffset0 "[0.000 0.000]"
+	g_vTexCoordScale0 "[1.000 1.000]"
+	TextureAmbientOcclusionA "materials/default/default_ao.tga"
+	TextureColorA "materials/bi_/combine/combine_lights_hs01a_color_tga_2cf19e8a.png"
+	TextureMaskA "materials/bi_/combine/combine_lights_hs01a_mask_tga_8de15860.png"
+	TextureNormalA "materials/bi_/combine/combine_lights_hs01a_normal_tga_4a534ccc.png"
+	TextureRoughnessA "materials/default/default_rough.tga"
+
+	//---- Material 1 ----
+	g_flFace1Displacement "-3.000"
+	g_flMaterial1EmissiveLevel "1.000"
+	g_flMaterial1TintAmount "1.000"
+	g_flMetalnessB "1.000"
+	g_vTexCoordOffset1 "[0.000 0.000]"
+	g_vTexCoordScale1 "[1.000 1.000]"
+	TextureColorB "materials/bi_/combine/combine_lights_hs01a_color2_tga_53b466d1.png"
+	TextureEmissiveB "materials/bi_/combine/combine_lights_hs01a_vmat_g_temissiveb_4374d02f.png"
+	TextureMaskB "materials/bi_/combine/combine_lights_hs01a_mask_tga_8de15860.png"
+
+	//---- Material 2 ----
+	g_flFace2Displacement "-12.000"
+	g_flMaterial2EmissiveLevel "4.000"
+	g_flMaterial2TintAmount "1.000"
+	g_flMetalnessC "1.000"
+	g_vTexCoordOffset2 "[0.000 0.000]"
+	g_vTexCoordScale2 "[1.000 1.000]"
+	TextureColorC "materials/bi_/combine/combine_lights_hs01a_color3_tga_4a3a18c8.png"
+	TextureEmissiveC "materials/bi_/combine/combine_lights_hs01a_color3_tga_4a3a18c8.png"
+
+	//---- Texture Coordinates ----
+	g_nScaleTexCoordUByModelScaleAxis "0"
+	g_nScaleTexCoordVByModelScaleAxis "0"
+	g_vTexCoordOffset "[0.000 0.000]"
+	g_vTexCoordScale "[1.000 1.000]"
+	g_vTexCoordScrollSpeed "[0.000 0.000]"
+
+	DynamicParams
+	{
+		g_flMaterial2EmissiveLevel "lerp(0.5,3,abs(sin(time*1.5)))"
+		g_vTexCoordOffset2 "float2(0,random(0,0.00125))"
+	}
+}

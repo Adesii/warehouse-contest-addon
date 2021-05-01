@@ -1,13 +1,14 @@
 <root>
+    <scripts>
+        <include src="file://{resources}/scripts/custom_game/machineupgrader.js"/>
+    </scripts>
 	<styles>
 		<include src="s2r://panorama/styles/base_styles.vcss_c" />
         <include src="s2r://panorama/styles/language_shared.vcss_c" />
         <include src="file://{resources}/styles/custom_game/common.css"/>
         <include src="file://{resources}/styles/custom_game/machineupgrader.css"/>
     </styles>
-    <scripts>
-        <include src="file://{resources}/scripts/custom_game/machineupgrader.js"/>
-    </scripts>
+    
     <snippets>
         <snippet name="CategoryHeader">
             <Button class="Category">
@@ -31,11 +32,11 @@
         <snippet name="CategoryItem">
             <Panel class="Category">
                 <Label class="Resourceitem" text="Testing"/>
-                <Label class="ResourceitemCount" text="otherTest"/>
+                <Label class="ResourceitemCount" text="otherTest" />
             </Panel>
         </snippet>
     </snippets>
-	<Panel class="MainMenu">
+	<ClientUIDialogPanel class="MainMenu">
         
         <Panel id="ConsoleInterior" >
             <Panel id="MoneyCounter">
@@ -43,40 +44,37 @@
                 <Label id="currmoneycount" class="mouneyCount" text="0"/>
             </Panel>
             <Panel class="MenuButtonCollection" id="menuCollection">
-                    <Panel class="Button Menu nobuilding" id="build">
-                        <Label class="ButtonText" onactivate="GoDeeper('buildmenu')" text="Build" />
-                        <Panel class="Arrow"/>
-                    </Panel>
-                    <Panel class="Button Menu hasbuilding" id="upgrade">
-                        <Label class="ButtonText" onactivate="GoDeeper('upgrademenu')"  text="Upgrade" />
-                        <Panel class="Arrow"/>
-                    </Panel>
-                    <Panel class="Button Menu hasbuilding">
-                        <Label class="ButtonText"  text="Close" />
-                    </Panel>
-	    	        <Panel class="Button Menu hasbuilding">
-                        <Label class="ButtonText Destroy"  text="Sell" />
-                        </Panel>
+                    <Button class="Button Menu nobuilding" onactivate="GoDeeper('buildmenu')" id="build">
+                        <Label class="ButtonText"  text="Build" acceptsinput="false" hittest="false"/>
+                        <Panel class="Arrow" acceptsinput="false" hittest="false"/>
+                    </Button>
+                    <Button class="Button Menu hasbuilding" onactivate="GoDeeper('upgrademenu')" id="upgrade">
+                        <Label class="ButtonText"   text="Upgrade" acceptsinput="false" hittest="false" />
+                        <Panel class="Arrow" acceptsinput="false" hittest="false"/>
+                    </Button>
+	    	        <Button class="Button Menu hasbuilding" onactivate="closebuilding()">
+                        <Label class="ButtonText Destroy"  text="Sell" acceptsinput="false" hittest="false" />
+                    </Button>
                     </Panel>
                 <Panel class="ExpandableMenu" id="buildmenu">
                     <Panel id="ExpandableBuildCollection" class="ExpandableCollection">
                     </Panel>
-                    <Panel class="ExpandableButton" onactivate="GetOut('buildmenu')">
-                            <Panel class="Arrow left"/>
-                    </Panel>
+                    <Button class="ExpandableButton" onactivate="GetOut('buildmenu')">
+                            <Panel class="Arrow left" acceptsinput="false" hittest="false"/>
+                    </Button>
                 </Panel>
                 <Panel class="ExpandableMenu" id="upgrademenu">
                     <Panel id="ExpandableUpgradeCollection" class="ExpandableCollection">
                         
                     </Panel>
-                    <Panel class="ExpandableButton" onactivate="GetOut('upgrademenu')">
-                            <Panel class="Arrow left"/>
-                    </Panel>
+                    <Button class="ExpandableButton" onactivate="GetOut('upgrademenu')">
+                            <Panel class="Arrow left" acceptsinput="false" hittest="false"/>
+                    </Button>
                 </Panel>
         </Panel>
         
-        <Image id="CombineLogo" src="s2r://panorama/images/upgrade_station_ui/combine_logo_psd.vtex"/>  
-        <Panel class="ScanlineMask"/>
+        <Image id="CombineLogo" src="s2r://panorama/images/upgrade_station_ui/combine_logo_psd.vtex" acceptsinput="false" hittest="false"/>  
+        <Panel class="ScanlineMask" acceptsinput="false" hittest="false"/>
         <Panel id="AnimatedTextureMask" acceptsinput="false" hittest="false"/>	
-    </Panel>
+    </ClientUIDialogPanel>
 </root>

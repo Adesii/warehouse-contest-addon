@@ -46,7 +46,7 @@ function lookForWaiting()
 
     npc_manager.waitingSpotAvoidanceEntity = Entities:FindByName(nil,npc_manager.waitingSpotAvoidance)
    --print("foundWaitingArea")
-    DebugDrawBox(npc_manager.waitingAreaEntity:GetAbsOrigin(),Vector(-npc_manager.waitingArea_x,-npc_manager.waitingArea_y,-5),Vector(npc_manager.waitingArea_x,npc_manager.waitingArea_y,5),255,0,0,20,5)
+    --DebugDrawBox(npc_manager.waitingAreaEntity:GetAbsOrigin(),Vector(-npc_manager.waitingArea_x,-npc_manager.waitingArea_y,-5),Vector(npc_manager.waitingArea_x,npc_manager.waitingArea_y,5),255,0,0,20,5)
     return nil
 end
 
@@ -62,14 +62,10 @@ end
 
 function npc_manager:updateLoop()
     for i,v in pairs(npc_manager.workers) do
-        v:update()
-    end
-    for key, value in pairs(npc_manager.waitingSpots) do
-        if value.Occupied == true then
-            DebugDrawBox(value.entity:GetAbsOrigin(),Vector(-10,-10,-2),Vector(10,10,2),255,0,0,20,npc_manager.npcUpdateTimer)
-        else
-            DebugDrawBox(value.entity:GetAbsOrigin(),Vector(-10,-10,-2),Vector(10,10,2),0,255,0,20,npc_manager.npcUpdateTimer)
+        if v.job == nil then
+            npc_manager:GetNewJob(v)
         end
+        v:update()
     end
     return npc_manager.npcUpdateTimer
 end
@@ -102,7 +98,7 @@ function npc_manager:GetNewJob(worker,p)
                 worker.job = value
                 value.worker = worker
                 worker.job:JobStart()
-                return
+                return value
             end
         end
     end

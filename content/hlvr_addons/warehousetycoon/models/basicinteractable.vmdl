@@ -19,11 +19,33 @@
 							},
 							{
 								from = "combine_lights_hs01a.vmat"
-								to = "materials/combine/combine_lights_hs01a.vmat"
+								to = "materials/own_lights.vmat"
 							},
 						]
 						use_global_default = false
 						global_default_material = ""
+					},
+					{
+						_class = "MaterialGroup"
+						name = "tier2"
+						remaps = 
+						[
+							{
+								from = "materials/own_lights.vmat"
+								to = "materials/own_lights_tier2.vmat"
+							},
+						]
+					},
+					{
+						_class = "MaterialGroup"
+						name = "tier3"
+						remaps = 
+						[
+							{
+								from = "materials/own_lights.vmat"
+								to = "materials/own_lights_tier3.vmat"
+							},
+						]
 					},
 				]
 			},
@@ -286,7 +308,7 @@
 						_class = "PhysicsShapeBox"
 						parent_bone = "IOBone"
 						surface_prop = "default"
-						collision_prop = "default"
+						collision_prop = "default_no_npc"
 						origin = [ 0.067663, 3.331484, 0.225177 ]
 						angles = [ 0.0, 0.0, 0.0 ]
 						dimensions = [ 4.272835, 37.217155, 25.872345 ]

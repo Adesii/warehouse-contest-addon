@@ -1,0 +1,94 @@
+// THIS FILE IS AUTO-GENERATED
+
+Layer0
+{
+	shader "vr_simple_liquid.vfx"
+
+	//---- Creates Foam ----
+	F_FOAM 1
+
+	//---- Bubbles ----
+	g_flBubbleDepthFalloff "1.500"
+	g_flBubbleOpacity "0.038"
+	g_flBubbleScale "0.600"
+	g_flBubblesMaximum "11.667"
+	g_flBubblesMinimum "3.258"
+	g_flBubbleSpaceScale "0.750"
+	g_flBubbleSpeed "1.000"
+	g_flBubbleStrength "5.000"
+	g_vBubbleColorInner "[0.062745 0.686275 0.698039 1.000000]"
+	g_vBubbleColorOuter "[1.000000 1.000000 1.000000 0.000000]"
+
+	//---- Fog ----
+	g_bFogEnabled "1"
+
+	//---- Lighting ----
+	g_flDirectionalLightmapMinZ "0.050"
+	g_flDirectionalLightmapStrength "1.000"
+
+	//---- Liquid ----
+	g_flBrightenEmptyArea "3.000"
+	g_flFoamLevelAdjust "0.000"
+	g_flFresnelGlassThickness "0.400"
+	g_flLiquidBackFade "0.000"
+	g_flLiquidBackOffset "6.000"
+	g_flLiquidBrightness "1.000"
+	g_flLiquidEmissiveStrength "0.189"
+	g_flLiquidInnerGlow "0.100"
+	g_flLiquidLevelHeight "0.000"
+	g_flLiquidLevelHeightDelta "0.300"
+	g_flLiquidRoughness "0.299"
+	g_flLiquidSharpness "30.000"
+	g_flLiquidSpecularStrength "1.000"
+	g_flLiquidSurfaceSpecularStrength "1.000"
+	g_flLiquidWobbleScale "0.010"
+	g_flLiquidWobbleSpeed "1.000"
+	g_flLiquidWobbleWavelength "50.000"
+	g_flMaskMaximum "1.000"
+	g_flMaskMinimum "0.000"
+	g_flSurfaceTension "0.500"
+	g_flTransmissiveStrength "1.000"
+	g_flWaterLineStrength "0.500"
+	g_vFoamColor "[0.321569 0.470588 1.000000 0.000000]"
+	g_vLiquidColor "[0.400000 0.764706 0.909804 1.000000]"
+	g_vLiquidLevelDownwardsMinMidMax "[-20.000 0.000 20.000]"
+	g_vLiquidLevelSidewardsMinMidMax "[-100.000 -100.000 -100.000]"
+	g_vLiquidLevelUpwardsMinMidMax "[73.529 74.815 100.000]"
+	TextureLiquidMask "materials/dev/panel_height.tga"
+
+	//---- Refraction ----
+	g_flChromaticDispersion "0.050"
+	g_flCubeRefractBrightness "1.000"
+	g_flCubeRefractLiquidTransparency "0.500"
+	g_flCubeRefractTransparency "0.500"
+	g_flRefractRoughnessMultiplier "1.000"
+
+	//---- Simple Material ----
+	TextureColorA "[0.298039 0.588235 0.627451 0.000000]"
+	TextureMetalnessA "[0.359000 0.359000 0.359000 0.000000]"
+	TextureNormalA "materials/default/default_normal.tga"
+	TextureRoughnessA "[0.333333 0.333333 0.333333 0.000000]"
+
+	//---- Test Values ----
+	g_flTestAgitation "0.300"
+	g_flTestFoaming "0.000"
+	g_vTestGravityDir "[0.000 0.000 -1.000]"
+
+	//---- Texture Coordinates ----
+	g_nScaleTexCoordUByModelScaleAxis "3"
+	g_nScaleTexCoordVByModelScaleAxis "3"
+	g_vTexCoordOffset "[0.000 0.000]"
+	g_vTexCoordScale "[1.000 1.000]"
+	g_vTexCoordScrollSpeed "[0.000 0.000]"
+
+	SystemAttributes
+	{
+		WorldMappingWidth "128"
+		WorldMappingHeight "128"
+	}
+
+	DynamicParams
+	{
+		g_vLiquidColor "float4(somethingstuff,somethingstuff,somethingstuff,255)"
+	}
+}

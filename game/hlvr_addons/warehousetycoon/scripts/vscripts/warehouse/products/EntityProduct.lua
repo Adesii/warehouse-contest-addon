@@ -21,7 +21,7 @@ end
 
 function Activate(ass)
     Product.entity = thisEntity
-    ProductionJob(prod)
+    Product.job = ProductionJob(prod)
 end
 
 function AddToThisMachine(id)

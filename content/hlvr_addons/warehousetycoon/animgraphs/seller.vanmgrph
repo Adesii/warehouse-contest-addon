@@ -9,7 +9,18 @@
 	m_pTagManager = 
 	{
 		_class = "CAnimTagManager"
-		m_tags = [  ]
+		m_tags = 
+		[
+			{
+				_class = "CAudioAnimTag"
+				m_name = "Unnamed Tag"
+				m_tagID = 
+				{
+					m_id = 516987810
+				}
+				m_clipName = "warehouse.buzz"
+			},
+		]
 	}
 	m_pMovementManager = 
 	{
@@ -84,13 +95,24 @@
 			{
 				_class = "CSequenceAnimNode"
 				m_sName = "Unnamed"
-				m_vecPosition = [ -317.0, 40.0 ]
+				m_vecPosition = [ -345.0, 46.0 ]
 				m_nNodeID = 
 				{
 					m_id = 1904873614
 				}
 				m_networkMode = "ServerAuthoritative"
-				m_tagSpans = [  ]
+				m_tagSpans = 
+				[
+					{
+						_class = "CAnimTagSpan"
+						m_id = 
+						{
+							m_id = 516987810
+						}
+						m_fStartCycle = 0.0
+						m_fDuration = 1.0
+					},
+				]
 				m_sequenceName = "sl_idle_additive"
 				m_playbackSpeed = 1.0
 				m_bLoop = true

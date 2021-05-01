@@ -1,0 +1,82 @@
+// THIS FILE IS AUTO-GENERATED
+
+Layer0
+{
+	shader "vr_simple_liquid.vfx"
+
+	//---- Bubbles ----
+	g_flBubbleDepthFalloff "1.500"
+	g_flBubbleOpacity "0.000"
+	g_flBubbleScale "2.000"
+	g_flBubblesMaximum "9.318"
+	g_flBubblesMinimum "3.258"
+	g_flBubbleSpaceScale "3.288"
+	g_flBubbleSpeed "1.000"
+	g_flBubbleStrength "5.000"
+	g_vBubbleColorInner "[0.698039 0.188235 0.062745 1.000000]"
+	g_vBubbleColorOuter "[1.000000 1.000000 1.000000 0.000000]"
+
+	//---- Fog ----
+	g_bFogEnabled "1"
+
+	//---- Lighting ----
+	g_flDirectionalLightmapMinZ "0.050"
+	g_flDirectionalLightmapStrength "1.000"
+
+	//---- Liquid ----
+	g_flBrightenEmptyArea "20.000"
+	g_flFresnelGlassThickness "0.000"
+	g_flLiquidBackFade "0.727"
+	g_flLiquidBackOffset "26.515"
+	g_flLiquidBrightness "10.000"
+	g_flLiquidEmissiveStrength "1.136"
+	g_flLiquidInnerGlow "4.659"
+	g_flLiquidLevelHeight "0.504"
+	g_flLiquidLevelHeightDelta "0.682"
+	g_flLiquidRoughness "0.481"
+	g_flLiquidSharpness "100.000"
+	g_flLiquidSpecularStrength "1.000"
+	g_flLiquidSurfaceSpecularStrength "1.000"
+	g_flLiquidWobbleScale "0.010"
+	g_flLiquidWobbleSpeed "18.939"
+	g_flLiquidWobbleWavelength "1.000"
+	g_flMaskMaximum "1.000"
+	g_flMaskMinimum "0.000"
+	g_flSurfaceTension "-2.273"
+	g_flTransmissiveStrength "31.250"
+	g_flWaterLineStrength "10.000"
+	g_vLiquidColor "[0.219608 0.003922 0.000000 1.000000]"
+	g_vLiquidLevelDownwardsMinMidMax "[-20.000 0.000 20.000]"
+	g_vLiquidLevelSidewardsMinMidMax "[-20.000 0.000 20.000]"
+	g_vLiquidLevelUpwardsMinMidMax "[-61.765 0.000 -45.588]"
+	TextureLiquidMask "[0.000000 0.000000 0.000000 0.000000]"
+
+	//---- Refraction ----
+	g_flChromaticDispersion "0.178"
+	g_flCubeRefractBrightness "3.485"
+	g_flCubeRefractLiquidTransparency "0.992"
+	g_flCubeRefractTransparency "0.485"
+	g_flRefractRoughnessMultiplier "1.000"
+
+	//---- Simple Material ----
+	TextureColorA "[0.627451 0.298039 0.294118 0.000000]"
+	TextureMetalnessA "[0.359000 0.359000 0.359000 0.000000]"
+	TextureNormalA "materials/default/default_normal.tga"
+	TextureRoughnessA "[0.333333 0.333333 0.333333 0.000000]"
+
+	//---- Test Values ----
+	g_flTestAgitation "0.300"
+	g_vTestGravityDir "[0.000 0.000 -1.000]"
+
+	//---- Texture Coordinates ----
+	g_nScaleTexCoordUByModelScaleAxis "0"
+	g_nScaleTexCoordVByModelScaleAxis "0"
+	g_vTexCoordOffset "[0.000 0.000]"
+	g_vTexCoordScale "[1.000 1.000]"
+	g_vTexCoordScrollSpeed "[0.000 0.000]"
+
+	SystemAttributes
+	{
+		PhysicsSurfaceProperties "prop.glass_bottle_large_wine"
+	}
+}

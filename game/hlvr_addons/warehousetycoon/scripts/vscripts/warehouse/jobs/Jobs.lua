@@ -55,7 +55,7 @@ BaseJob = class(
             if self.status == JobStatus.INPROGRESS then
                 self.status = JobStatus.COMPLETED
                 self:JobCompleted()
-                self.worker.manager:GetNewJob()
+                self.worker.manager:GetNewJob(self.worker)
             end
         end;
 
@@ -111,7 +111,7 @@ WaitingJob = class({
                 self.TimeWaitingInArea = 0
             end
         end
-        if self.status == JobStatus.INPROGRESS and VectorDistance(self.worker.entity:GetAbsOrigin(),self.GoalVector)<self.worker.toleranceDistance then
+        if self.status == JobStatus.INPROGRESS and VectorDistance(self.worker.entity:GetAbsOrigin(),self.GoalVector)<40 then
             --print("Distance is lower than tolerance")
             --self.worker.manager:GetNewJob(self.worker)
             self.status = JobStatus.WAITING
@@ -168,6 +168,7 @@ ProductionJob = class({
         Product.Job = self
         WarehouseMain.JobManager:AddJob(self)
        --print("Added to AvailableJobList: "..self.name.." For Product: "..self.Product.Resource.Name)
+       return self
     end;
     JobStart = function (self)
        --print("Starting Production Job for item: "..self.Product.Resource.Name)
@@ -177,8 +178,11 @@ ProductionJob = class({
        --print("Trying to Walk to: "..tostring(self.Goal))
     end;
     JobUpdate = function (self)
+        if self.Product == nil or self.Product.entity:IsNull() then
+            return
+        end
         --DebugDrawCircle(self.Goal,Vector(0,255,0),255,40,true,0.125)
-        if self.State == JobStatus.INPROGRESS then
+        if self.State == JobStatus.INPROGRESS  then
             self:CalculateGoal()
             self.worker:WalktoPos(self.Goal,0)
             local firstV =self.worker.entity:GetAbsOrigin()
@@ -187,24 +191,25 @@ ProductionJob = class({
                 self:CalculateGoal()
                 self.worker.entity:NpcForceGoPosition(self.Goal,true,50)
             end
-            if VectorDistance(Vector(firstV.x,firstV.y,0),Vector(secV.x,secV.y,0))<40 then
+            if VectorDistance(Vector(firstV.x,firstV.y,0),Vector(secV.x,secV.y,0))<100 then
                --print("Reached Goal")
                 self.State = JobStatus.WAITING
             end
         end
+        if self.State == JobStatus.WAITING and self.ownMachine == nil then
+            --print(self.Product.Resource.ProductionTable)
+             self.ownMachine = WarehouseMain.MachineManager:FindMachineOfType(self.Product)
+             if self.ownMachine.Name == "Seller" then
+                 table.insert(self.ownMachine.workers, self.worker)
+             else
+                 self.ownMachine.worker = self.worker
+             end
+             
+         end
         if self.State == JobStatus.WAITING and self.HasProduct == false then
             self:PickUp()
            --print("looking For Machine, ",self.ownMachine)
-            if self.ownMachine == nil then
-               --print(self.Product.Resource.ProductionTable)
-                self.ownMachine = WarehouseMain.MachineManager:FindMachineOfType(self.Product.Resource.ProductionTable)
-                if self.ownMachine.Name == "Seller" then
-                    table.insert(self.ownMachine.workers, self.worker)
-                else
-                    self.ownMachine.worker = self.worker
-                end
-                
-            end
+            
            --print("looking For Machine, ",self.ownMachine)
             --DeepPrintTable(self.ownMachine)
         end
@@ -228,8 +233,9 @@ ProductionJob = class({
 
     JobCompleted = function (self)
         self.State = JobStatus.COMPLETED
-        self.worker.job = nil
-
+        if self.worker ~= nil then
+            self.worker.job = nil
+        end
         WarehouseMain.JobManager:RemoveJob(self)
     end;
 
@@ -256,14 +262,15 @@ SellJob = class({
                 self.State = JobStatus.WAITING
             end
         end
+        
         if self.State == JobStatus.WAITING and self.HasProduct == false then
             self:PickUp()
            --print("looking For Machine, ",self.ownMachine)
-            if self.ownMachine == nil then
-               --print(self.Product.Resource.ProductionTable)
-                self.ownMachine = WarehouseMain.MachineManager:FindMachineOfType(self.Product.Resource.ProductionTable)
-                table.insert(self.ownMachine.workers, self.worker)
-            end
+           if self.ownMachine == nil then
+            --print(self.Product.Resource.ProductionTable)
+             self.ownMachine = WarehouseMain.MachineManager:FindMachineOfType(self.Product)
+             table.insert(self.ownMachine.workers, self.worker)
+         end
            --print("looking For Machine, ",self.ownMachine)
             --DeepPrintTable(self.ownMachine)
         end

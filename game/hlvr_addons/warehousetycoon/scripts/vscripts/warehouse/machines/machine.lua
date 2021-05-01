@@ -54,32 +54,25 @@ TransitionQueue = {}
 
 function DoUIPanel(action,Repeat)
     if Transiting == true and Repeat == false then
-        table.insert(TransitionQueue,action)
         return
     end
     Transiting = true;
    --print(action)
     if action == "Open" then
-        EntFireByHandle(thisEntity,MachineTable.UIPanel,"RemoveCSSClass","playerNear",1)
+        EntFireByHandle(thisEntity,MachineTable.UIPanel,"RemoveCSSClass","playerFar")
         EntFireByHandle(thisEntity,MachineTable.UIPanel,"Enable",nil,1)
         EntFireByHandle(thisEntity,MachineTable.UIPanel,"AddCSSClass","playerNear",1.1)
         
         Transiting = false;
     elseif action == "Close" then
+        EntFireByHandle(thisEntity,MachineTable.UIPanel,"RemoveCSSClass","playerNear")
         EntFireByHandle(thisEntity,MachineTable.UIPanel,"AddCSSClass","playerFar")
         thisEntity:SetThink(function ()
            --print(thisEntity,MachineTable.UIPanel)
-            EntFireByHandle(thisEntity,MachineTable.UIPanel,"RemoveCSSClass","playerFar")
             EntFireByHandle(thisEntity,MachineTable.UIPanel,"Disable")
-            Transiting = false;
+            
         end,"closing",1)
-    end
-    local val = "0";
-    for key, value in pairs(TransitionQueue) do
-        val = value
-        table.remove( TransitionQueue,0)
-        DoUIPanel(val,true)
-        break
+        Transiting = false;
     end
     
     

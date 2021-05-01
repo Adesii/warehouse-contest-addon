@@ -41,14 +41,24 @@ end
 
 function MachineManager:FindMachineOfType(resP)
     
-    for machineName, product in pairs(resP) do
+    for machineName, product in pairs(resP.Resource.ProductionTable) do
        --print(machineName,product.Tier)
         for key, machine in pairs(MachineManager.AvailableList) do
             if machine.ownMachine.kind ~= nil then
                --print(machine,machineName,machine.ownMachine.kind.Tier,machine.ownMachine.kind.Occupied)
-                if machine.ownMachine.kind.Name == machineName and machine.ownMachine.kind.Tier>=product.Tier and machine.ownMachine.kind.Occupied == false then
-                    machine.ownMachine.kind.Occupied = true
-                    return machine.ownMachine.kind
+                if machine.ownMachine.kind.Name == machineName and machine.ownMachine.kind.Tier>=product.Tier  then
+                    if machine.ownMachine.kind.Occupied == false then
+                        machine.ownMachine.kind.Occupied = true
+                        return machine.ownMachine.kind
+                    end
+                    if not machine.ownMachine.kind.working == true and machine.ownMachine.kind.CurrentProduct == nil and not machine.ownMachine.kind.worker.job == nil and machine.ownMachine.kind.worker.job.Product.Resource.Tier<=resP.Resource.Tier then
+                        machine.ownMachine.kind.worker.job.ownMachine = nil
+                        machine.ownMachine.kind.worker.job.state = JobStatus.WAITING
+                        machine.ownMachine.kind.worker:WalktoPos(machine.ownMachine.kind.worker.entity:GetAbsOrigin())
+                        machine.ownMachine.kind.worker = nil
+                        machine.ownMachine.kind.Occupied = true
+                        return machine.ownMachine.kind
+                    end
                 end
             end
         end

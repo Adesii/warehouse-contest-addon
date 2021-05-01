@@ -80,7 +80,6 @@
     horizontal-align:center;
     vertical-align: center;
     background-color: panelForeground;
-
 	transform: translateX(0);
 	transition-property: transform;
 	transition-delay: 0s;
@@ -170,16 +169,20 @@
 	animation-timing-function: ease-in-out; 
 	animation-iteration-count: 1; 
 }
-
+.Button:hover
+{
+    sound: "PanoUI.SelectPositive";
+    sound-out: "PanoUI.SelectNegative";
+}
 
 .playerNear{
-
     animation-name: FadeIn;
     animation-delay: 0s;
     animation-duration: 0.5s;
     animation-timing-function: ease-in-out;
     animation-iteration-count: 1; 
-
+    sound: "PanoUI.Appear";
+    sound-out: "PanoUI.disappear";
     opacity: 1;
     pre-transform-scale2d:1;
 }
@@ -280,10 +283,7 @@
     horizontal-align:right;
     text-align: right;
 }
-.Category:hover{
-    brightness: 5;
-    background-color: green;
-}
+
 .CantAfford{
     background-color: rgba(255, 0, 0, 0.473);
     color: red;
@@ -458,6 +458,8 @@
 		transform: translateY(0) translateX(0);
 	}
 }
+
+
 
 
 

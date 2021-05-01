@@ -28,7 +28,7 @@ function Spawn(spawnkeys)
     t.entity = thisEntity
 
     MachineTable = t
-    thisEntity:SetThink(function () return AddToSellMachines(MachineTable) end,"idk",0.5)
+    thisEntity:SetThink(function () return AddToSellMachines(MachineTable) end,"idk",0.4)
 end
 
 function AddToSellMachines(t)

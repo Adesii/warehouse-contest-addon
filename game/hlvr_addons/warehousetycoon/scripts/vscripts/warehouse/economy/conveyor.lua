@@ -5,7 +5,7 @@ Conveyor = _G.Conveyor or {
     ItemRandomPusher = "randomPusherTrigger";
     ItemRandomPusherEntity = nil;
     TimeUntilNextSpawn = 2;
-
+    Active = false;
     ProgressBar = "progressbar";
     ProgressBarEntity = nil;
     CurrentMaxResources = 10;
@@ -68,6 +68,9 @@ function Conveyor:FindSpawnPoint()
 end
 
 function Conveyor:onUpdate()
+    if Conveyor.Active == false then
+        return
+    end
     if Conveyor.currentTime < 0 then
         Conveyor.currentTime = Conveyor.TimeUntilNextSpawn
        --print(_G.WarehouseMain.ResourcesDictionaryAmount["BasicResource"])

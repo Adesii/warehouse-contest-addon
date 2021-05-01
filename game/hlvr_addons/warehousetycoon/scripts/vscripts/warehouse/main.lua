@@ -18,11 +18,12 @@ function Precache(context)
 end
 WarehouseMain = _G.WarehouseMain or
 {
-    Money = moneymaker(100);
+    Money = moneymaker(1000);
     UpdateTime = 0.1;
     MachineManager = require("warehouse.machines.machinesManager");
     JobManager = require("warehouse.jobs.JobManager");
     npc_manager = require("warehouse.ai.npc_manager");
+    HomeworldUnlocked = false;
 
     OnStart = {};
     OnUpdate = {};
@@ -60,9 +61,9 @@ function WarehouseMain:Reload()
     --WarehouseMain = thisEntity:GetContext("warehouseContext")
 end
 
+function UpdateOnRemove()
 
-function WarehouseMain:Reload()
-   --print("loading Warehouse")
+    SendToConsole("host_timescale 1.0")
 end
 
 
@@ -99,6 +100,9 @@ end
 
 function WarehouseMain:RemoveResource(Resource)
 
+    if WarehouseMain.ResourcesDictionaryAmount[Resource] == nil then
+        WarehouseMain.ResourcesDictionaryAmount[Resource] = 1
+    end
     WarehouseMain.ResourcesDictionaryAmount[Resource] = WarehouseMain.ResourcesDictionaryAmount[Resource]-1
     vlua.delete(WarehouseMain.Resources, Resource)
     if WarehouseMain.ResourcesDictionaryAmount[Resource] == 0 then
@@ -106,7 +110,27 @@ function WarehouseMain:RemoveResource(Resource)
     end
     WarehouseMain:AddToTable("ResourceAmount", WarehouseMain.ResourcesDictionaryAmount)
 end
+function WarehouseMain:UnlockHomeWorld()
+    if WarehouseMain.HomeworldUnlocked == false then
+        print("Unlocked Home World Teleporter")
+        EntFire(thisEntity,"@homeworld_sound","StartSound")
+        EntFire(thisEntity,"@homeworld_door","Open","",2.0)
+        WarehouseMain.HomeworldUnlocked = true
+    end
+end
+function AttachWrist()
+    local player = Entities:FindByClassname(nil,"prop_hmd_avatar")
+    if player == nil then
+        print("player not found")
+        return 
+    end
 
+    player = player:GetVRHand(0)
+    local panel = Entities:FindByName(nil,"@playerWristPanel")
+    panel:SetParent(player,"grabbity_glove")
+    panel:SetLocalOrigin(Vector(-5,4,-2))
+    panel:SetLocalAngles(20,0,-80)
+end
 function WarehouseMain:AddToTable(key,table)
     warehouseDataTable = {}
     warehouseDataTable[key] = table
@@ -123,7 +147,10 @@ end
 function SendTestCommand()
     WarehouseMain:SendCommandToPanorama(json.encode({TestingPanel={CountDown=Time();}}))
 end
+function CMD(command)
 
+    SendToConsole(command)
+end
 function SendTestMoney()
     WarehouseMain.Money:AddMoney(100)
 end
@@ -188,6 +215,8 @@ function UpdateMachineInfo(currentMachineID)
     WarehouseMain:AddToTable("MachineUpdate",b)
 end
 
-
+function ActivateConveyor()
+    _G.Conveyor.Active = true
+end
 
 _G.WarehouseMain = WarehouseMain

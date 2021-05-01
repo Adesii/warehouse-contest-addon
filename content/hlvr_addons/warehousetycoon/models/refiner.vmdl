@@ -1,0 +1,349 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:modeldoc28:version{fb63b6ca-f435-4aa0-a2c7-c66ddc651dca} -->
+{
+	rootNode = 
+	{
+		_class = "RootNode"
+		children = 
+		[
+			{
+				_class = "MaterialGroupList"
+				children = 
+				[
+					{
+						_class = "DefaultMaterialGroup"
+						remaps = 
+						[
+							{
+								from = "combine_lights_hs01a.vmat"
+								to = "materials/own_lights.vmat"
+							},
+							{
+								from = "combine_panel_hs01a.vmat"
+								to = "materials/combine/combine_panel_hs01a.vmat"
+							},
+							{
+								from = "combine_base.vmat"
+								to = "materials/combine/combine_wall_hs01a.vmat"
+							},
+							{
+								from = "liquid.vmat"
+								to = "materials/own_lights.vmat"
+							},
+						]
+						use_global_default = false
+						global_default_material = ""
+					},
+					{
+						_class = "MaterialGroup"
+						name = "tier2"
+						remaps = 
+						[
+							{
+								from = "materials/own_lights.vmat"
+								to = "materials/own_lights_tier2.vmat"
+							},
+						]
+					},
+					{
+						_class = "MaterialGroup"
+						name = "tier3"
+						remaps = 
+						[
+							{
+								from = "materials/own_lights.vmat"
+								to = "materials/own_lights_tier3.vmat"
+							},
+						]
+					},
+				]
+			},
+			{
+				_class = "RenderMeshList"
+				children = 
+				[
+					{
+						_class = "RenderMeshFile"
+						filename = "models/exports/refinery.dmx"
+						import_scale = 1.0
+						import_filter = 
+						{
+							exclude_by_default = false
+							exception_list = [  ]
+						}
+					},
+				]
+			},
+			{
+				_class = "AnimationList"
+				children = 
+				[
+					{
+						_class = "AnimFile"
+						name = "bi_deploy"
+						activity_name = ""
+						activity_weight = 1
+						weight_list_name = ""
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = false
+						anim_markup_ordered = false
+						disable_compression = false
+						source_filename = "models/exports/anims/BasicInteractable/bi_deploy.dmx"
+						start_frame = -1
+						end_frame = -1
+						framerate = -1.0
+						reverse = false
+					},
+					{
+						_class = "AnimFile"
+						name = "bi_idle"
+						activity_name = "ACT_IDLE"
+						activity_weight = 1
+						weight_list_name = ""
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = true
+						delta = false
+						worldSpace = false
+						hidden = false
+						anim_markup_ordered = false
+						disable_compression = false
+						source_filename = "models/exports/anims/refiner/br_idle.dmx"
+						start_frame = -1
+						end_frame = -1
+						framerate = -1.0
+						reverse = false
+					},
+					{
+						_class = "AnimFile"
+						name = "bi_undeployed"
+						activity_name = ""
+						activity_weight = 1
+						weight_list_name = ""
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = false
+						anim_markup_ordered = false
+						disable_compression = false
+						source_filename = "models/exports/anims/BasicInteractable/bi_undeployed.dmx"
+						start_frame = -1
+						end_frame = -1
+						framerate = -1.0
+						reverse = false
+					},
+					{
+						_class = "AnimFile"
+						name = "bi_working"
+						activity_name = ""
+						activity_weight = 1
+						weight_list_name = ""
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = false
+						anim_markup_ordered = false
+						disable_compression = false
+						source_filename = "models/exports/anims/refiner/br_working.dmx"
+						start_frame = -1
+						end_frame = -1
+						framerate = -1.0
+						reverse = false
+					},
+					{
+						_class = "AnimFile"
+						name = "bi_intro"
+						children = 
+						[
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+								event_frame = 0
+								event_keys = 
+								{
+									name = resource:"particles/vortigaunt_fx/inner_vault_vort_beam_02b.vpcf"
+									detach_from_owner = false
+									stop_on_seq_change = true
+									stop_immediately = false
+									use_layer_sequence = false
+									tags = ""
+									attachment_point = "main"
+									attachment_type = "point_follow"
+									attachment_point_cp1 = "root"
+									attachment_type_cp1 = "point_follow"
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+								event_frame = 0
+								event_keys = 
+								{
+									name = resource:"particles/vortigaunt_fx/vort_beam_explosion.vpcf"
+									detach_from_owner = false
+									stop_on_seq_change = true
+									stop_immediately = false
+									use_layer_sequence = false
+									tags = ""
+									attachment_point = "main"
+									attachment_type = "point"
+									attachment_point_cp1 = "main"
+									attachment_type_cp1 = "point_follow"
+								}
+							},
+						]
+						activity_name = ""
+						activity_weight = 1
+						weight_list_name = ""
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = false
+						anim_markup_ordered = false
+						disable_compression = false
+						source_filename = "models/exports/anims/basicinteractable/bi_intro.dmx"
+						start_frame = -1
+						end_frame = -1
+						framerate = -1.0
+						reverse = false
+					},
+				]
+				default_root_bone_name = ""
+			},
+			{
+				_class = "BoneMarkupList"
+				bone_cull_type = "None"
+			},
+			{
+				_class = "AttachmentList"
+				children = 
+				[
+					{
+						_class = "Folder"
+						name = "base"
+						children = 
+						[
+							{
+								_class = "Attachment"
+								name = "WALK"
+								parent_bone = "Root"
+								relative_origin = [ 76.504234, 0.0, 0.0 ]
+								relative_angles = [ 0.0, 0.0, 0.0 ]
+								weight = 1.0
+								ignore_rotation = false
+							},
+							{
+								_class = "Attachment"
+								name = "EXT"
+								parent_bone = "pelvis"
+								relative_origin = [ 0.0, -8.17828, 37.445637 ]
+								relative_angles = [ 0.0, 0.0, 0.0 ]
+								weight = 1.0
+								ignore_rotation = false
+							},
+							{
+								_class = "Attachment"
+								name = "IO"
+								parent_bone = "IOBone"
+								relative_origin = [ -5.99614, -6.095787, -0.000087 ]
+								relative_angles = [ 0.0, 90.0, 0.0 ]
+								weight = 1.0
+								ignore_rotation = false
+							},
+							{
+								_class = "Attachment"
+								name = "SMOKE"
+								parent_bone = "Root"
+								relative_origin = [ 10.587481, 123.900917, -0.329124 ]
+								relative_angles = [ 0.0, 0.0, 0.0 ]
+								weight = 1.0
+								ignore_rotation = false
+							},
+						]
+					},
+					{
+						_class = "Attachment"
+						name = "main"
+						parent_bone = "pelvis"
+						relative_origin = [ 0.0, 0.0, 0.0 ]
+						relative_angles = [ 0.0, 0.0, 0.0 ]
+						weight = 1.0
+						ignore_rotation = false
+					},
+					{
+						_class = "Attachment"
+						name = "root"
+						parent_bone = "Root"
+						relative_origin = [ 0.0, 0.0, 0.0 ]
+						relative_angles = [ 0.0, 0.0, 0.0 ]
+						weight = 1.0
+						ignore_rotation = false
+					},
+				]
+			},
+			{
+				_class = "PhysicsShapeList"
+				children = 
+				[
+					{
+						_class = "PhysicsShapeBox"
+						parent_bone = "pelvis"
+						surface_prop = "default"
+						collision_prop = "default"
+						origin = [ -0.020844, 32.864586, 26.26099 ]
+						angles = [ 0.0, 0.0, 0.0 ]
+						dimensions = [ 79.996414, 81.711555, 26.743252 ]
+					},
+					{
+						_class = "PhysicsShapeBox"
+						parent_bone = "pelvis"
+						surface_prop = "default"
+						collision_prop = "default"
+						origin = [ -2.966311, 31.870321, -26.174362 ]
+						angles = [ 0.0, 0.0, 0.0 ]
+						dimensions = [ 85.88736, 79.720116, 26.695742 ]
+					},
+					{
+						_class = "PhysicsShapeBox"
+						parent_bone = "IOBone"
+						surface_prop = "default"
+						collision_prop = "default_no_npc"
+						origin = [ 0.845874, 11.975067, 0.068877 ]
+						angles = [ 0.0, 0.0, 0.0 ]
+						dimensions = [ 2.716412, 24.424362, 26.184944 ]
+					},
+					{
+						_class = "PhysicsShapeBox"
+						parent_bone = "pelvis"
+						surface_prop = "default"
+						collision_prop = "default"
+						origin = [ 20.352877, 5.105209, 2.351599 ]
+						angles = [ 0.0, 0.0, 0.0 ]
+						dimensions = [ 39.457111, 26.189899, 44.206783 ]
+					},
+					{
+						_class = "PhysicsShapeBox"
+						parent_bone = "pelvis"
+						surface_prop = "default"
+						collision_prop = "default"
+						origin = [ -8.023186, 27.114374, 1.245004 ]
+						angles = [ 0.0, 0.0, 0.0 ]
+						dimensions = [ 64.321869, 70.208221, 79.404785 ]
+					},
+				]
+			},
+		]
+		model_archetype = "animated_model"
+		primary_associated_entity = "npc_furniture"
+		anim_graph_name = "animgraphs/basicrefiner.vanmgrph"
+	}
+}

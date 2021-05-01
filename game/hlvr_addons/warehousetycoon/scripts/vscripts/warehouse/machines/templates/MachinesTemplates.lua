@@ -14,10 +14,17 @@ MachineAttachemntNames = {
 
  ModelResourceDictionary = {
      ["basicinteractable"] = "models/basicinteractable.vmdl",
-     ["basicshredder"]="models/shredder.vmdl"
+     ["basicshredder"]="models/shredder.vmdl",
+     ["basicrefiner"]="models/refiner.vmdl"
  }
 ParticleResourceDictionary = {
     ["smokeParticle"] = "particles/smokeparticle.vpcf"
+}
+
+MaterialGroupIndex = {
+    [1] = "default",
+    [2] = "tier2",
+    [3] = "tier3"
 }
 
 
@@ -49,7 +56,7 @@ Assembler = class({
 
     IORadius = 10;
 
-    UpgradeCostPrice = 50;
+    UpgradeCostPrice = 150;
     
 
 
@@ -103,13 +110,20 @@ Assembler = class({
             --print("GETTING PRODUCT")
             if vlua.contains(_G.WarehouseMain.Resources,res) then
                 --print("HAS Product")
-                if vlua.contains(_G.WarehouseMain.Resources[res].Resource.ProductionTable,self.Name) then
+                if _G.WarehouseMain.Resources[res].Resource.ProductionTable ~=nil and vlua.contains(_G.WarehouseMain.Resources[res].Resource.ProductionTable,self.Name) then
                     --print("Is in Valid")
                     self.CurrentProduct = _G.WarehouseMain.Resources[res]
                     self.NextProduct = self.CurrentProduct.Resource:NextProduct(self.Name)()
                     --DeepPrintTable(getmetatable(self.NextProduct))
-                    vlua.delete(_G.WarehouseMain.Resources, self.CurrentProduct.Name)
-                    self.Working = true
+                    --print(self.NextProduct.Tier,self.Tier)
+                    if self.NextProduct ~= nil and self.NextProduct.Tier <= self.Tier then
+                        vlua.delete(_G.WarehouseMain.Resources, self.CurrentProduct.Name)
+                        self.Working = true
+                    else
+                        self.CurrentProduct = nil
+                        self.NextProduct = nil
+                        self.Working = false
+                    end
                 end
             end
         end
@@ -127,7 +141,12 @@ Assembler = class({
         _G.WarehouseMain:RemoveResource(self.CurrentProduct.Resource.Name)
         local nextProd = self.CurrentProduct.Resource:NextProduct(self.Name)()
        --print("Next Production = ",nextProd)
-        local entKeys = ResourceEntityKeys["BasicResource"]
+       local entKeys = nil
+       if vlua.contains(ResourceEntityKeys, nextProd.Name) then
+        entKeys= ResourceEntityKeys[nextProd.Name]
+       else
+        entKeys = ResourceEntityKeys["BasicResource"]
+       end
        --print("GotEntKeys: ",entKeys)
         entKeys.ResourceType = nextProd.Name
        --print("New Key = ",entKeys.ResourceType)
@@ -140,39 +159,84 @@ Assembler = class({
         if self.CurrentProduct.Job ~=nil then
             self.CurrentProduct.Job:JobCompleted()
         end
-        self.CurrentProduct.entity:Destroy()
-        local newP =SpawnEntityFromTableSynchronous("prop_physics",entKeys)
-        if self.worker ~= nil then
-           --print("Getting New Job")
-            self.Occupied = false
-            WarehouseMain.npc_manager:GetNewJob(self.worker,newP)
+        if not self.CurrentProduct.entity:IsNull() then
+            self.CurrentProduct.entity:Destroy()
         end
-        
-        self.Working = false
-        self.CurrentProduct = nil
-        self.CurrentProductProgess = 0.0;
+        local newP =SpawnEntityFromTableSynchronous("prop_physics",entKeys)
+        if newP ~= nil and vlua.contains(nextProd.ProductionTable, self.Name) and nextProd.ProductionTable[self.Name].Tier <= self.Tier  then
+            if self.worker ~= nil then
+                local j = WarehouseMain.npc_manager:GetNewJob(self.worker,newP)
+                self.CurrentProductProgess = 0.0;
+                self.CurrentProduct = j.Product
+                j.ownMachine = self
+                j.State = JobStatus.WAITING
+            end
+        else
+            if self.worker ~= nil then
+               --print("Getting New Job")
+                self.Occupied = false
+                WarehouseMain.npc_manager:GetNewJob(self.worker,newP)
+            end
+            self.Working = false
+            self.CurrentProduct = nil
+            self.NextProduct = nil
+            self.CurrentProductProgess = 0.0;
+        end
         
     end;
     Upgrade = function (self)
         self.Tier = self.Tier + 1
+        if MaterialGroupIndex[self.Tier] ~= nil then
+            self.entity:SetMaterialGroup(MaterialGroupIndex[self.Tier])
+        end
+        _G.WarehouseMain.Money:RemoveMoney(self.UpgradeCost)
         self.UpgradeCost = self.UpgradeCost *2
     end
 },{Name = ProductStringDictionary.Assembler;Price = 25;})
 
 
 Shredder = class({
-    
+    UpgradeCostPrice = 150;
     BaseModel = {
         furniture_physics = "1",
         model = ModelResourceDictionary.basicshredder,
     },
 },{Name = ProductStringDictionary.Shredder;Price = 100;},Assembler)
 Refiner = class({
-    
+    UpgradeCostPrice = 250;
     BaseModel = {
         furniture_physics = "1",
-        model = ModelResourceDictionary.shredder,
+        model = ModelResourceDictionary.basicrefiner,
     },
+    constructor = function (self,ownEntity)
+        self.baseTable = ownEntity
+        self.entity = ownEntity.entity
+        
+        self[MachineTargetsIndex.BASE] = Entities:FindByName(nil,ownEntity[MachineTargetsIndex.BASE])
+        self.BaseModel.origin = self[MachineTargetsIndex.BASE]:GetAbsOrigin()
+        self.BaseModel.angles = self.entity:GetAngles()
+        self.BaseModel.targetname = self.Name.."__"..self.entity:entindex()
+        self.entity = SpawnEntityFromTableSynchronous("npc_furniture",self.BaseModel)
+        --self.entity:RegisterAnimTagListener(self.TagListener)
+        self.Attachments = {}
+        for key, value in pairs(MachineAttachemntNames) do
+            self.Attachments[value] = self.entity:ScriptLookupAttachment(value)
+        end
+        self.Particles = {}
+        self.UpgradeCost = self.UpgradeCostPrice
+        self.Tier = self.Tier + 1
+    end;
+    Upgrade = function (self)
+        self.Tier = self.Tier + 1
+        if MaterialGroupIndex[self.Tier-1] ~= nil then
+            self.entity:SetMaterialGroup(MaterialGroupIndex[self.Tier-1])
+        end
+        if self.Tier-1 == Tiers.Impossible then
+            _G.WarehouseMain:UnlockHomeWorld()
+        end
+        _G.WarehouseMain.Money:RemoveMoney(self.UpgradeCost)
+        self.UpgradeCost = self.UpgradeCost *2
+    end
 },{Name = ProductStringDictionary.Refiner;Price = 250;},Assembler)
 
 Seller = class({

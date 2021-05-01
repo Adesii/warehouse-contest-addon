@@ -1,0 +1,68 @@
+#CombineLogo{
+    width: 100px;
+    height: width-percentage(100%);
+
+	horizontal-align:right;
+	vertical-align:bottom;
+
+	opacity:1;
+}
+
+#ConsoleInterior{
+    width: 100%;
+    height: 100%;
+    flow-children:down;
+}
+#MoneyCounter{
+    height: 10%;
+}
+#FastForward-Stack{
+    background-color: rgba(63, 136, 155, 0.247);
+    flow-children:right;
+    width: 50%;
+    height: 15%;
+    horizontal-align:center;
+    vertical-align: top;
+}
+
+.FastForwardButton Label{
+    height: 100%;
+    width: 100%;
+    vertical-align: center;
+    font-size: 1000px;
+    text-overflow: shrink;
+    text-align: center;
+}
+Button{
+    width: fill-parent-flow(1);
+    height: fill-parent-flow(1);
+}
+.FastForwardButton{
+    background-color: rgba(19, 103, 131, 0.418);
+    width: fill-parent-flow(1);
+    height: 100%;
+}
+#CitizenManager{
+    horizontal-align:left;
+    vertical-align: center;
+    width: 100%;
+    height: 100%;
+    flow-children:right;
+}
+#FireCitizen{
+    height: 20%;
+    width: 40%;
+    background-color: rgba(150, 25, 25, 0.589);
+    horizontal-align:left;
+    vertical-align: center;
+    transform: rotateZ(90deg) translateX(-50px);
+}
+#FireCitizen Label{
+    height: 100%;
+    width: 100%;
+    vertical-align: bottom;
+    text-overflow: shrink;
+    font-size: 60px;
+    margin: 10%;
+    
+}

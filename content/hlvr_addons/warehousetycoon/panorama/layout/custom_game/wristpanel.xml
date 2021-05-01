@@ -1,0 +1,42 @@
+<root>
+    <scripts>
+        <include src="file://{resources}/scripts/custom_game/wrist.js"/>
+    </scripts>
+	<styles>
+		<include src="s2r://panorama/styles/base_styles.vcss_c" />
+        <include src="s2r://panorama/styles/language_shared.vcss_c" />
+        <include src="file://{resources}/styles/custom_game/common.vcss_c"/>
+        <include src="file://{resources}/styles/custom_game/maindisplay.vcss_c"/>
+        <include src="file://{resources}/styles/custom_game/wrist.vcss_c"/>
+    </styles>
+	<ClientUIDialogPanel class="MainMenu">
+        
+        <Panel id="ConsoleInterior" >
+            <Panel id="MoneyCounter">
+                <Label class="moneyName" text="Combine Tokens:"/>
+                <Label id="currmoneycount" class="mouneyCount" text="0"/>
+            </Panel>
+            <Panel id="FastForward-Stack">
+                <Button id="FastForward1x" onactivate="fastForward1()" class="FastForwardButton" >
+                    <Label text="1x"/>
+                </Button>
+                <Button id="FastForward2x" onactivate="fastForward2()" class="FastForwardButton" >
+                    <Label text="2x"/>
+                </Button>
+                <Button id="FastForward5x" onactivate="fastForward5()" class="FastForwardButton" >
+                    <Label text="5x"/>
+                </Button>
+            </Panel>
+            <Panel id="CitizenManager">
+                
+            </Panel>
+        </Panel>
+        <Button id="FireCitizen" onactivate="FireCitizen()" class="CitizenFireButton" >
+            <Label text="Fire Citizen"/>
+        </Button>
+        
+        <Image id="CombineLogo" src="s2r://panorama/images/upgrade_station_ui/combine_logo_psd.vtex" acceptsinput="false" hittest="false"/>  
+        <Panel class="ScanlineMask" acceptsinput="false" hittest="false"/>
+        <Panel id="AnimatedTextureMask" acceptsinput="false" hittest="false"/>	
+    </ClientUIDialogPanel>
+</root>

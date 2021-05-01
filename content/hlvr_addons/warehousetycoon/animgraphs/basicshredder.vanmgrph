@@ -25,7 +25,36 @@
 	m_pTagManager = 
 	{
 		_class = "CAnimTagManager"
-		m_tags = [  ]
+		m_tags = 
+		[
+			{
+				_class = "CAudioAnimTag"
+				m_name = "Shredding"
+				m_tagID = 
+				{
+					m_id = 168474269
+				}
+				m_clipName = "NPC_Manhack.Grind"
+			},
+			{
+				_class = "CAudioAnimTag"
+				m_name = "shredding pt2"
+				m_tagID = 
+				{
+					m_id = 1695591411
+				}
+				m_clipName = "NPC_Manhack.Grind"
+			},
+			{
+				_class = "CAudioAnimTag"
+				m_name = "Sparks"
+				m_tagID = 
+				{
+					m_id = 1091605596
+				}
+				m_clipName = "Spark.Short_Sparkles"
+			},
+		]
 	}
 	m_pMovementManager = 
 	{
@@ -114,7 +143,7 @@
 			{
 				_class = "CStateMachineAnimNode"
 				m_sName = "Unnamed"
-				m_vecPosition = [ -160.0, 98.0 ]
+				m_vecPosition = [ -159.0, 98.0 ]
 				m_nNodeID = 
 				{
 					m_id = 285441642
@@ -369,7 +398,7 @@
 			{
 				_class = "CRootAnimNode"
 				m_sName = "Unnamed"
-				m_vecPosition = [ 48.0, 99.0 ]
+				m_vecPosition = [ 172.0, 100.0 ]
 				m_nNodeID = 
 				{
 					m_id = 983415122
@@ -390,13 +419,87 @@
 			{
 				_class = "CSequenceAnimNode"
 				m_sName = "Unnamed"
-				m_vecPosition = [ -1046.0, 123.0 ]
+				m_vecPosition = [ -1046.0, 122.0 ]
 				m_nNodeID = 
 				{
 					m_id = 1105172932
 				}
 				m_networkMode = "ServerAuthoritative"
-				m_tagSpans = [  ]
+				m_tagSpans = 
+				[
+					{
+						_class = "CAnimTagSpan"
+						m_id = 
+						{
+							m_id = 168474269
+						}
+						m_fStartCycle = 0.420339
+						m_fDuration = 0.036158
+					},
+					{
+						_class = "CAnimTagSpan"
+						m_id = 
+						{
+							m_id = 168474269
+						}
+						m_fStartCycle = 0.494915
+						m_fDuration = 0.023729
+					},
+					{
+						_class = "CAnimTagSpan"
+						m_id = 
+						{
+							m_id = 168474269
+						}
+						m_fStartCycle = 0.563842
+						m_fDuration = 0.027119
+					},
+					{
+						_class = "CAnimTagSpan"
+						m_id = 
+						{
+							m_id = 1695591411
+						}
+						m_fStartCycle = 0.456497
+						m_fDuration = 0.031638
+					},
+					{
+						_class = "CAnimTagSpan"
+						m_id = 
+						{
+							m_id = 1695591411
+						}
+						m_fStartCycle = 0.522034
+						m_fDuration = 0.027119
+					},
+					{
+						_class = "CAnimTagSpan"
+						m_id = 
+						{
+							m_id = 1091605596
+						}
+						m_fStartCycle = 0.451977
+						m_fDuration = 0.025989
+					},
+					{
+						_class = "CAnimTagSpan"
+						m_id = 
+						{
+							m_id = 1091605596
+						}
+						m_fStartCycle = 0.489266
+						m_fDuration = 0.022599
+					},
+					{
+						_class = "CAnimTagSpan"
+						m_id = 
+						{
+							m_id = 1091605596
+						}
+						m_fStartCycle = 0.59096
+						m_fDuration = 0.033898
+					},
+				]
 				m_sequenceName = "bs_idle_special"
 				m_playbackSpeed = 1.0
 				m_bLoop = false
@@ -464,7 +567,7 @@
 			{
 				_class = "CChoiceAnimNode"
 				m_sName = "Unnamed"
-				m_vecPosition = [ -799.0, 92.0 ]
+				m_vecPosition = [ -800.0, 93.0 ]
 				m_nNodeID = 
 				{
 					m_id = 1586127267

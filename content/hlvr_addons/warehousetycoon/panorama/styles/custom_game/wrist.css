@@ -43,11 +43,27 @@ Button{
     height: 100%;
 }
 #CitizenManager{
-    horizontal-align:left;
+    horizontal-align:center;
     vertical-align: center;
-    width: 100%;
-    height: 100%;
+    width: 50%;
+    height: 30%;
     flow-children:right;
+}
+#citizenBuy{
+    height: 100%;
+    width: 100%;
+    color: lightblue;
+    flow-children:down;
+
+}
+
+#citizenBuy Label{
+    width: 100%;
+    height: fill-parent-flow(1);
+    vertical-align: center;
+    text-align: center;
+    text-overflow: shrink;
+    font-size: 60px;
 }
 #FireCitizen{
     height: 20%;

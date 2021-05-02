@@ -18,8 +18,8 @@ function Precache(context)
 end
 WarehouseMain = _G.WarehouseMain or
 {
-    Money = moneymaker(1000);
-    UpdateTime = 0.1;
+    Money = moneymaker(100);
+    UpdateTime = 0.2;
     MachineManager = require("warehouse.machines.machinesManager");
     JobManager = require("warehouse.jobs.JobManager");
     npc_manager = require("warehouse.ai.npc_manager");
@@ -115,6 +115,7 @@ function WarehouseMain:UnlockHomeWorld()
         print("Unlocked Home World Teleporter")
         EntFire(thisEntity,"@homeworld_sound","StartSound")
         EntFire(thisEntity,"@homeworld_door","Open","",2.0)
+        WarehouseMain.Final.IsUnlocked = true
         WarehouseMain.HomeworldUnlocked = true
     end
 end
@@ -140,6 +141,12 @@ function WarehouseMain:AddToTable(key,table)
     WarehouseMain:SendCommandToPanorama(json.encode(warehouseDataTable))
 end
 
+function BuyWorker()
+    if WarehouseMain.Money:RemoveMoney(WarehouseMain.npc_manager.CostToBuy) then
+        EntFire(thisEntity,"dgsg","Spawn")
+    end
+end
+
 function WarehouseMain:SendCommandToPanorama(command)
     SendToConsole("@panorama_dispatch_event AddStyleToEachChild(\'"..command.."\')")
 end
@@ -160,8 +167,10 @@ function BuyMachine(panel,machine)
     for index, value in pairs(MachinesIndex) do
         if value.Name == machine then
            --print(value,panel,"sgfdsg")
-            local m =WarehouseMain.MachineManager:AddNewMachine(value,panel)
-            UpdateMachineInfo(m:GetEntID())
+            if WarehouseMain.Money:RemoveMoney(value.Price) then
+                local m =WarehouseMain.MachineManager:AddNewMachine(value,panel)
+                UpdateMachineInfo(m:GetEntID())
+            end
         end
     end
     

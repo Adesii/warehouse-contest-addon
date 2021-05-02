@@ -52,10 +52,10 @@
                         <Label class="ButtonText"   text="Upgrade" acceptsinput="false" hittest="false" />
                         <Panel class="Arrow" acceptsinput="false" hittest="false"/>
                     </Button>
-	    	        <Button class="Button Menu hasbuilding" onactivate="closebuilding()">
+	    	        <!--<Button class="Button Menu hasbuilding" onactivate="closebuilding()">
                         <Label class="ButtonText Destroy"  text="Sell" acceptsinput="false" hittest="false" />
-                    </Button>
-                    </Panel>
+                        </Button>-->
+            </Panel>
                 <Panel class="ExpandableMenu" id="buildmenu">
                     <Panel id="ExpandableBuildCollection" class="ExpandableCollection">
                     </Panel>

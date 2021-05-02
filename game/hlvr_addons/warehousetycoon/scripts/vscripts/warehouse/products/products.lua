@@ -29,7 +29,7 @@ ProductStringDictionary = {
 --Resources
 BasicResource = class({
     Time = 10;
-    Worth = 5;
+    Worth = 10;
     Model = ProductModelDictionary.BaseResource;
     constructor = function (self)
         self.ProductionTable = {
@@ -73,7 +73,7 @@ ImpossibleResource = class({
 --AssemblerProducts
 ArmorPlate = class({
     Time = 4;
-    Worth = 10;
+    Worth = 20;
     Model = ProductModelDictionary.ArmorPlate;
     constructor = function (self)
         self.ProductionTable = {
@@ -109,7 +109,7 @@ FusionCore = class({
 --ShredderProducts
 ResourceShards = class({
     Time = 5;
-    Worth = 15;
+    Worth = 25;
     Model = ProductModelDictionary.ResourceShards;
     constructor = function (self)
         self.ProductionTable = {

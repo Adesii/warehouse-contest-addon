@@ -46,7 +46,7 @@ function npc:WalktoPos(position,tolerance)
         return
     end
     thisEntity:SetGraphParameterEnum("WalkForward",npc.walkenum)
-    thisEntity:NpcForceGoPosition(position,true,100)
+    thisEntity:NpcForceGoPosition(position,true,30)
 end
 function npc:update()
     if npc.job then

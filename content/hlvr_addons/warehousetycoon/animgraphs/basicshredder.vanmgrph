@@ -54,6 +54,15 @@
 				}
 				m_clipName = "Spark.Short_Sparkles"
 			},
+			{
+				_class = "CAudioAnimTag"
+				m_name = "washingmachine"
+				m_tagID = 
+				{
+					m_id = 1875963247
+				}
+				m_clipName = "Washing_Machine.Spin"
+			},
 		]
 	}
 	m_pMovementManager = 
@@ -392,13 +401,60 @@
 		{
 			key = 
 			{
+				m_id = 962416691
+			}
+			value = 
+			{
+				_class = "CStateMachineAnimNode"
+				m_sName = "Unnamed"
+				m_vecPosition = [ 60.0, 166.0 ]
+				m_nNodeID = 
+				{
+					m_id = 962416691
+				}
+				m_networkMode = "ServerAuthoritative"
+				m_states = 
+				[
+					{
+						_class = "CAnimState"
+						m_transitions = [  ]
+						m_tags = 
+						[
+							{
+								m_id = 1875963247
+							},
+						]
+						m_tagBehaviors = [ 0 ]
+						m_name = "sound"
+						m_childNodeID = 
+						{
+							m_id = 285441642
+						}
+						m_stateID = 
+						{
+							m_id = 868555624
+						}
+						m_position = [ -42.0, -14.0 ]
+						m_bIsStartState = true
+						m_bIsEndtState = false
+						m_bIsPassthrough = false
+						m_bIsRootMotionExclusive = false
+					},
+				]
+				m_bBlockWaningTags = false
+				m_bLockStateWhenWaning = false
+			}
+		},
+		{
+			key = 
+			{
 				m_id = 983415122
 			}
 			value = 
 			{
 				_class = "CRootAnimNode"
 				m_sName = "Unnamed"
-				m_vecPosition = [ 172.0, 100.0 ]
+				m_vecPosition = [ 268.0, 86.0 ]
 				m_nNodeID = 
 				{
 					m_id = 983415122
@@ -406,7 +462,7 @@
 				m_networkMode = "ServerAuthoritative"
 				m_childID = 
 				{
-					m_id = 285441642
+					m_id = 962416691
 				}
 			}
 		},
@@ -541,18 +597,7 @@
 					m_id = 1371406380
 				}
 				m_networkMode = "ServerAuthoritative"
-				m_tagSpans = 
-				[
-					{
-						_class = "CAnimTagSpan"
-						m_id = 
-						{
-							m_id = 1010190828
-						}
-						m_fStartCycle = 0.0
-						m_fDuration = 1.0
-					},
-				]
+				m_tagSpans = [  ]
 				m_sequenceName = "bi_working"
 				m_playbackSpeed = 1.0
 				m_bLoop = true

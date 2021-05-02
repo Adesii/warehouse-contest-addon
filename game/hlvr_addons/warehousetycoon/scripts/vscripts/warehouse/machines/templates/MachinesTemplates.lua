@@ -251,6 +251,7 @@ Seller = class({
         for key, value in pairs(MachineAttachemntNames) do
             self.Attachments[value] = self.entity:ScriptLookupAttachment(value)
         end
+        self.CurrentProduct = nil
     end;
     MachineUpdate = function (self)
         if self.CurrentProduct == nil then
@@ -285,6 +286,80 @@ Seller = class({
         end
     end;
 })
+
+FinalClass = class({
+    Name = "FinalClass";
+    IORadius = 30;
+    workers = {};
+
+    GoalNumber = 10;
+    ResourceTable={
+
+    };
+
+    constructor = function (self,ownEntity)
+        self.baseTable = ownEntity
+        self.entity = ownEntity.entity
+
+        self.Attachments = {}
+        for key, value in pairs(MachineAttachemntNames) do
+            self.Attachments[value] = self.entity:ScriptLookupAttachment(value)
+        end
+    end;
+    MachineUpdate = function (self)
+        if self.CurrentProduct == nil then
+            self:CheckIO()
+        end
+        local ending = 0
+        for key, value in pairs(self.ResourceTable) do
+            if value>=self.GoalNumber then
+                ending = ending + 1
+            end
+        end
+        if ending >= 3 then
+            self:releaseFromHell()
+        end
+    end;
+
+    releaseFromHell = function (self)
+        SendToConsole("map startup")
+    end;
+
+    CheckIO = function (self)
+        --DebugDrawBox(self.entity:GetAttachmentOrigin(self.Attachments[MachineAttachemntNames.IO]),Vector(-self.IORadius,-self.IORadius,-self.IORadius),Vector(self.IORadius,self.IORadius,self.IORadius),0,255,0,50,0.1)
+        local res =Entities:FindByClassnameNearest("prop_physics",self.entity:GetAttachmentOrigin(self.Attachments[MachineAttachemntNames.IO]),self.IORadius)
+        if res ~= nil then
+           --print("GETTING PRODUCT")
+            if vlua.contains(_G.WarehouseMain.Resources,res) then
+               --print("HAS Product")
+                
+                self.CurrentProduct = _G.WarehouseMain.Resources[res]
+                --DeepPrintTable(getmetatable(self.NextProduct))
+               --print("deleting: "..tostring(self.CurrentProduct.Name))
+                _G.WarehouseMain:RemoveResource(self.CurrentProduct.Resource.Name)
+
+                if self.ResourceTable[self.CurrentProduct.Resource.Name] == nil then
+                    self.ResourceTable[self.CurrentProduct.Resource.Name] = 0
+                end
+                self.ResourceTable[self.CurrentProduct.Resource.Name] = self.ResourceTable[self.CurrentProduct.Resource.Name]+1
+                print(self.ResourceTable[self.CurrentProduct.Resource.Name])
+                for key, value in pairs(self.workers) do
+                    if  value.job.Product ~= nil and value.job.Product.entity == self.CurrentProduct.entity then
+                        if value.job ~= nil then
+                            value.job:JobCompleted()
+                        end
+                        
+                       --print("Getting New Job")
+                        WarehouseMain.npc_manager:GetNewJob(value)
+                    end
+                end
+                self.CurrentProduct.entity:Destroy()
+                self.CurrentProduct = nil
+            end
+        end
+    end;
+})
+
 
 MachinesIndex = {
     [1] = Assembler;

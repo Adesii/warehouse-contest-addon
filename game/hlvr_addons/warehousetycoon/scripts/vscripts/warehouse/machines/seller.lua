@@ -35,5 +35,4 @@ function AddToSellMachines(t)
     t.ownMachine = Machine(Seller,ProductionJob,t)
     _G.WarehouseMain.Seller = t
     WarehouseMain.MachineManager.Machines[t.id] = t
-
 end

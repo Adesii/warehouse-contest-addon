@@ -1,3 +1,6 @@
+let citizenCounter = null;
+let CurrentMoney = 0;
+
 function DecodeCommand(command) 
 {  
     if(command.includes("money")){
@@ -6,8 +9,36 @@ function DecodeCommand(command)
         var moneyCounter =  $("#currmoneycount");
         moneyCounter.text = decoded["money"].Balance;
         CurrentMoney = decoded["money"].Balance;
+
+		if (citizenCounter){
+            if (citizenCounter.RemoveClass) {
+                if (CurrentMoney <Number.parseInt(citizenCounter.FindChildrenWithClassTraverse("CitizenCost").text)) {
+                    citizenCounter.AddClass('CantAfford');
+                }else{
+                    citizenCounter.RemoveClass('CantAfford');
+                }
+            }
+        }
+		
     }
+	if(command.includes("citizen")){
+		var decoded = JSON.parse(command);
+		$.Msg(decoded);
+		citizenCounter = $("#CitizenManager");
+		$.Msg(decoded["citizen"].Cost)
+		$("#costmf").text = decoded["citizen"].Cost
+        if (CurrentMoney <Number.parseInt($("#costmf").text)) {
+            $("#CitizenManager").AddClass('CantAfford');
+        }else{
+            $("#CitizenManager").RemoveClass('CantAfford');
+        }
+	}
 }
+
+function BuyWorker() {
+	$.DispatchEvent("ClientUI_FireOutputStr",0,"BuyWorker()");
+}
+
 
 function fastForward1(){
     SendEvent(1.0);
@@ -16,7 +47,7 @@ function fastForward2(){
     SendEvent(2.0);
 }
 function fastForward5(){
-    SendEvent(5.0);
+    SendEvent(3.0);
 }
 function SendEvent(FastForward) {  
         $.DispatchEvent("ClientUI_FireOutputStr",0,"CMD(\'host_timescale "+FastForward+"\')");

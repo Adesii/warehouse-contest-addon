@@ -17,7 +17,9 @@ local npc_manager = {
     workerAmount = 0;
     workers = {};
 
-    availableJobs = {}
+    availableJobs = {};
+
+    CostToBuy = 100;
 }
 
 function npc_manager:init()
@@ -47,6 +49,10 @@ function lookForWaiting()
     npc_manager.waitingSpotAvoidanceEntity = Entities:FindByName(nil,npc_manager.waitingSpotAvoidance)
    --print("foundWaitingArea")
     --DebugDrawBox(npc_manager.waitingAreaEntity:GetAbsOrigin(),Vector(-npc_manager.waitingArea_x,-npc_manager.waitingArea_y,-5),Vector(npc_manager.waitingArea_x,npc_manager.waitingArea_y,5),255,0,0,20,5)
+    local b = {}
+    b["Cost"] = npc_manager.CostToBuy
+    WarehouseMain:AddToTable("citizen",b)
+
     return nil
 end
 
@@ -58,6 +64,11 @@ function npc_manager:AddWorker(worker)
     npc_manager.workerAmount = npc_manager.workerAmount+1
 
     _G.NPCList = npc_manager.workers
+    npc_manager.CostToBuy = npc_manager.CostToBuy * 1.5
+    local b = {}
+    b["Cost"] = WarehouseMain.npc_manager.CostToBuy
+    WarehouseMain:AddToTable("citizen",b)
+    npc_manager:GetNewJob(worker)
 end
 
 function npc_manager:updateLoop()
@@ -111,7 +122,7 @@ function npc_manager:GetNewJob(worker,p)
             worker.job = value
             value.worker = worker
             worker.job:JobStart()
-            return
+            return value
         end
     end
     if worker.job == nil then

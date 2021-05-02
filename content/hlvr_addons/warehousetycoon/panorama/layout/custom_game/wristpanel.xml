@@ -5,9 +5,9 @@
 	<styles>
 		<include src="s2r://panorama/styles/base_styles.vcss_c" />
         <include src="s2r://panorama/styles/language_shared.vcss_c" />
-        <include src="file://{resources}/styles/custom_game/common.vcss_c"/>
-        <include src="file://{resources}/styles/custom_game/maindisplay.vcss_c"/>
-        <include src="file://{resources}/styles/custom_game/wrist.vcss_c"/>
+        <include src="file://{resources}/styles/custom_game/common.css"/>
+        <include src="file://{resources}/styles/custom_game/maindisplay.css"/>
+        <include src="file://{resources}/styles/custom_game/wrist.css"/>
     </styles>
 	<ClientUIDialogPanel class="MainMenu">
         
@@ -24,17 +24,20 @@
                     <Label text="2x"/>
                 </Button>
                 <Button id="FastForward5x" onactivate="fastForward5()" class="FastForwardButton" >
-                    <Label text="5x"/>
+                    <Label text="3x"/>
                 </Button>
             </Panel>
             <Panel id="CitizenManager">
-                
+                <Button id="citizenBuy" onactivate="BuyWorker()">
+                    <Label id="CitizenName" text="Buy Worker"/>
+                    <Label id="costmf" class="CitizenCost" text="255"/>
+                </Button>
             </Panel>
         </Panel>
-        <Button id="FireCitizen" onactivate="FireCitizen()" class="CitizenFireButton" >
+        <!--<Button id="FireCitizen" onactivate="FireCitizen()" class="CitizenFireButton" >
             <Label text="Fire Citizen"/>
         </Button>
-        
+        -->
         <Image id="CombineLogo" src="s2r://panorama/images/upgrade_station_ui/combine_logo_psd.vtex" acceptsinput="false" hittest="false"/>  
         <Panel class="ScanlineMask" acceptsinput="false" hittest="false"/>
         <Panel id="AnimatedTextureMask" acceptsinput="false" hittest="false"/>	

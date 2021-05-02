@@ -25,7 +25,27 @@
 	m_pTagManager = 
 	{
 		_class = "CAnimTagManager"
-		m_tags = [  ]
+		m_tags = 
+		[
+			{
+				_class = "CAudioAnimTag"
+				m_name = "sound"
+				m_tagID = 
+				{
+					m_id = 1212784344
+				}
+				m_clipName = "Water.Drip_Splashy_Loop"
+			},
+			{
+				_class = "CAudioAnimTag"
+				m_name = "washingmachine"
+				m_tagID = 
+				{
+					m_id = 166846678
+				}
+				m_clipName = "Washing_Machine.Spin"
+			},
+		]
 	}
 	m_pMovementManager = 
 	{
@@ -363,13 +383,63 @@
 		{
 			key = 
 			{
+				m_id = 962416691
+			}
+			value = 
+			{
+				_class = "CStateMachineAnimNode"
+				m_sName = "Unnamed"
+				m_vecPosition = [ 111.0, 146.0 ]
+				m_nNodeID = 
+				{
+					m_id = 962416691
+				}
+				m_networkMode = "ServerAuthoritative"
+				m_states = 
+				[
+					{
+						_class = "CAnimState"
+						m_transitions = [  ]
+						m_tags = 
+						[
+							{
+								m_id = 166846678
+							},
+							{
+								m_id = 1212784344
+							},
+						]
+						m_tagBehaviors = [ 0, 0 ]
+						m_name = "sound"
+						m_childNodeID = 
+						{
+							m_id = 285441642
+						}
+						m_stateID = 
+						{
+							m_id = 868555624
+						}
+						m_position = [ -42.0, -14.0 ]
+						m_bIsStartState = true
+						m_bIsEndtState = false
+						m_bIsPassthrough = false
+						m_bIsRootMotionExclusive = false
+					},
+				]
+				m_bBlockWaningTags = false
+				m_bLockStateWhenWaning = false
+			}
+		},
+		{
+			key = 
+			{
 				m_id = 983415122
 			}
 			value = 
 			{
 				_class = "CRootAnimNode"
 				m_sName = "Unnamed"
-				m_vecPosition = [ 48.0, 99.0 ]
+				m_vecPosition = [ 314.0, 120.0 ]
 				m_nNodeID = 
 				{
 					m_id = 983415122
@@ -377,7 +447,7 @@
 				m_networkMode = "ServerAuthoritative"
 				m_childID = 
 				{
-					m_id = 285441642
+					m_id = 962416691
 				}
 			}
 		},

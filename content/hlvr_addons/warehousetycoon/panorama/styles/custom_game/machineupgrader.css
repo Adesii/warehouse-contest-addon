@@ -181,8 +181,8 @@
     animation-duration: 0.5s;
     animation-timing-function: ease-in-out;
     animation-iteration-count: 1; 
-    sound: "PanoUI.Appear";
-    sound-out: "PanoUI.disappear";
+    //sound: "PanoUI.Appear";
+    //sound-out: "PanoUI.disappear";
     opacity: 1;
     pre-transform-scale2d:1;
 }
@@ -285,7 +285,12 @@
 }
 
 .CantAfford{
-    background-color: rgba(255, 0, 0, 0.473);
+    background-color: rgba(134, 98, 98, 0.473);
+    color: red;
+    
+}
+.CantAfford:hover{
+    background-color: rgba(134, 98, 98, 0.473);
     color: red;
     
 }

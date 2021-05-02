@@ -64,4 +64,41 @@
 			"sounds/goodluck.vsnd",
 		]
 	}
+	
+	"warehouse.warehousefinalo1" = 
+	{
+		type = "hlvr_update_vo_default"
+		volume = 1.5
+		vsnd_files = 
+		[
+			"sounds/warehouse_finalObjective-01.vsnd",
+		]
+	}
+	"warehouse.warehousefinalo2" = 
+	{
+		type = "hlvr_update_vo_default"
+		volume = 1.5
+		vsnd_files = 
+		[
+			"sounds/warehouse_finalObjective-02.vsnd",
+		]
+	}
+	"warehouse.warehousefinalo3" = 
+	{
+		type = "hlvr_update_vo_default"
+		volume = 1.5
+		vsnd_files = 
+		[
+			"sounds/warehouse_finalObjective-03.vsnd",
+		]
+	}
+	"warehouse.warehousefinalo4" = 
+	{
+		type = "hlvr_update_vo_default"
+		volume = 1.5
+		vsnd_files = 
+		[
+			"sounds/warehouse_finalObjective-04.vsnd",
+		]
+	}
 }

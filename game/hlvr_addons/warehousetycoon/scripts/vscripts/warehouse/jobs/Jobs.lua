@@ -199,7 +199,7 @@ ProductionJob = class({
         if self.State == JobStatus.WAITING and self.ownMachine == nil then
             --print(self.Product.Resource.ProductionTable)
              self.ownMachine = WarehouseMain.MachineManager:FindMachineOfType(self.Product)
-             if self.ownMachine.Name == "Seller" then
+             if self.ownMachine.Name == "Seller" or self.ownMachine.Name == "FinalClass" then
                  table.insert(self.ownMachine.workers, self.worker)
              else
                  self.ownMachine.worker = self.worker

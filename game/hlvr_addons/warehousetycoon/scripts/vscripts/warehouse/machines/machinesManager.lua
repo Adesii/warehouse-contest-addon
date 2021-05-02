@@ -51,17 +51,15 @@ function MachineManager:FindMachineOfType(resP)
                         machine.ownMachine.kind.Occupied = true
                         return machine.ownMachine.kind
                     end
-                    if not machine.ownMachine.kind.working == true and machine.ownMachine.kind.CurrentProduct == nil and not machine.ownMachine.kind.worker.job == nil and machine.ownMachine.kind.worker.job.Product.Resource.Tier<=resP.Resource.Tier then
-                        machine.ownMachine.kind.worker.job.ownMachine = nil
-                        machine.ownMachine.kind.worker.job.state = JobStatus.WAITING
-                        machine.ownMachine.kind.worker:WalktoPos(machine.ownMachine.kind.worker.entity:GetAbsOrigin())
-                        machine.ownMachine.kind.worker = nil
-                        machine.ownMachine.kind.Occupied = true
-                        return machine.ownMachine.kind
-                    end
                 end
             end
         end
+    end
+    if resP.Resource.Tier == Tiers.Impossible and WarehouseMain.Final.IsUnlocked == true then
+        if vlua.contains(WarehouseMain.Final.ownMachine.kind.ResourceTable,resP.Resource.Name) and WarehouseMain.Final.ownMachine.kind.ResourceTable[resP.Resource.Name] <= WarehouseMain.Final.ownMachine.kind.GoalNumber then
+                return WarehouseMain.Final.ownMachine.kind
+        end
+        return WarehouseMain.Final.ownMachine.kind
     end
     return WarehouseMain.Seller.ownMachine.kind
 end

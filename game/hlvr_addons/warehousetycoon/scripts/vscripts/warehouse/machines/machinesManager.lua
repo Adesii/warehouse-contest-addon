@@ -59,7 +59,6 @@ function MachineManager:FindMachineOfType(resP)
         if vlua.contains(WarehouseMain.Final.ownMachine.kind.ResourceTable,resP.Resource.Name) and WarehouseMain.Final.ownMachine.kind.ResourceTable[resP.Resource.Name] <= WarehouseMain.Final.ownMachine.kind.GoalNumber then
                 return WarehouseMain.Final.ownMachine.kind
         end
-        return WarehouseMain.Final.ownMachine.kind
     end
     return WarehouseMain.Seller.ownMachine.kind
 end

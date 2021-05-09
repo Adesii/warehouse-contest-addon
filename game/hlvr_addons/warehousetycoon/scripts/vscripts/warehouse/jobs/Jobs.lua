@@ -138,7 +138,7 @@ WaitingJob = class({
                 end
                 --self.worker.entity:SetOrigin(self.entity:GetAbsOrigin())
             end
-            --print("waiting for new Job")
+            print("waiting for new Job")
             self.worker.manager:GetNewJob(self.worker)
         end
     end;
@@ -187,9 +187,9 @@ ProductionJob = class({
             self.worker:WalktoPos(self.Goal,0)
             local firstV =self.worker.entity:GetAbsOrigin()
             local secV =self.Product.entity:GetAbsOrigin()
-            if VectorDistance(self.worker.entity:NpcNavGetGoalPosition(),self.worker.entity:GetAbsOrigin())<40 then
+            if VectorDistance(self.worker.entity:NpcNavGetGoalPosition(),self.worker.entity:GetAbsOrigin())<5 then
                 self:CalculateGoal()
-                self.worker.entity:NpcForceGoPosition(self.Goal,true,50)
+                self.worker.entity:NpcForceGoPosition(self.Goal,true,100)
             end
             if VectorDistance(Vector(firstV.x,firstV.y,0),Vector(secV.x,secV.y,0))<100 then
                --print("Reached Goal")
@@ -241,7 +241,7 @@ ProductionJob = class({
 
     CalculateGoal = function (self)
         if not self.worker.entity:IsNull() and not self.Product.entity:IsNull() then
-            self.Goal = ((-(self.worker.entity:GetAbsOrigin()-self.Product.entity:GetAbsOrigin())):Normalized()*(VectorDistance(self.worker.entity:GetAbsOrigin(),self.Product.entity:GetAbsOrigin())/2))+self.worker.entity:GetAbsOrigin()
+            self.Goal = (((-(self.worker.entity:GetAbsOrigin()-self.Product.entity:GetAbsOrigin())):Normalized())*100)+self.worker.entity:GetAbsOrigin()
         else
             self.Goal = self.worker.entity:GetAbsOrigin()
         end
@@ -251,26 +251,38 @@ ProductionJob = class({
 SellJob = class({
     name = "selljob";
     JobUpdate = function (self)
+        if self.Product == nil or self.Product.entity:IsNull() then
+            return
+        end
         --DebugDrawCircle(self.Goal,Vector(0,255,0),255,40,true,0.125)
-        if self.State == JobStatus.INPROGRESS then
+        if self.State == JobStatus.INPROGRESS  then
             self:CalculateGoal()
             self.worker:WalktoPos(self.Goal,0)
             local firstV =self.worker.entity:GetAbsOrigin()
             local secV =self.Product.entity:GetAbsOrigin()
-            if VectorDistance(Vector(firstV.x,firstV.y,0),Vector(secV.x,secV.y,0))<40 then
+            if VectorDistance(self.worker.entity:NpcNavGetGoalPosition(),self.worker.entity:GetAbsOrigin())<40 then
+                self:CalculateGoal()
+                self.worker.entity:NpcForceGoPosition(self.Goal,true,50)
+            end
+            if VectorDistance(Vector(firstV.x,firstV.y,0),Vector(secV.x,secV.y,0))<100 then
                --print("Reached Goal")
                 self.State = JobStatus.WAITING
             end
         end
-        
+        if self.State == JobStatus.WAITING and self.ownMachine == nil then
+            --print(self.Product.Resource.ProductionTable)
+             self.ownMachine = WarehouseMain.MachineManager:FindMachineOfType(self.Product)
+             if self.ownMachine.Name == "Seller" or self.ownMachine.Name == "FinalClass" then
+                 table.insert(self.ownMachine.workers, self.worker)
+             else
+                 self.ownMachine.worker = self.worker
+             end
+             
+         end
         if self.State == JobStatus.WAITING and self.HasProduct == false then
             self:PickUp()
            --print("looking For Machine, ",self.ownMachine)
-           if self.ownMachine == nil then
-            --print(self.Product.Resource.ProductionTable)
-             self.ownMachine = WarehouseMain.MachineManager:FindMachineOfType(self.Product)
-             table.insert(self.ownMachine.workers, self.worker)
-         end
+            
            --print("looking For Machine, ",self.ownMachine)
             --DeepPrintTable(self.ownMachine)
         end
@@ -279,6 +291,7 @@ SellJob = class({
             self.worker:WalktoPos(self.ownMachine.entity:GetAttachmentOrigin(self.ownMachine.Attachments[MachineAttachemntNames.WALKTO]),0)
             if VectorDistance(self.ownMachine.entity:GetAttachmentOrigin(self.ownMachine.Attachments[MachineAttachemntNames.WALKTO]),self.worker.entity:GetAbsOrigin())<40 then
                 if self.Product ~= nil and not self.Product.entity:IsNull() then
+                    self.Product.entity:SetParent(nil,"")
                     self.Product.entity:SetOrigin(self.ownMachine.entity:GetAttachmentOrigin(self.ownMachine.Attachments[MachineAttachemntNames.IO]))
                 end
             end

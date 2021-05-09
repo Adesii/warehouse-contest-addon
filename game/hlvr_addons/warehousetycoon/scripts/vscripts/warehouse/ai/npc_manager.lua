@@ -68,7 +68,7 @@ function npc_manager:AddWorker(worker)
     local b = {}
     b["Cost"] = WarehouseMain.npc_manager.CostToBuy
     WarehouseMain:AddToTable("citizen",b)
-    npc_manager:GetNewJob(worker)
+    npc_manager:getWaitingSpot(worker)
 end
 
 function npc_manager:updateLoop()

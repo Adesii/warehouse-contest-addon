@@ -32,7 +32,7 @@ function Spawn(spawnkeys)
 end
 
 function AddToSellMachines(t)
-    t.ownMachine = Machine(Seller,ProductionJob,t)
+    t.ownMachine = Machine(Seller,SellJob,t)
     _G.WarehouseMain.Seller = t
     WarehouseMain.MachineManager.Machines[t.id] = t
 end

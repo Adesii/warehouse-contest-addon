@@ -8,7 +8,10 @@ Conveyor = _G.Conveyor or {
     Active = false;
     ProgressBar = "progressbar";
     ProgressBarEntity = nil;
-    CurrentMaxResources = 10;
+    CurrentMaxResources = 1;
+
+    conveyorWalkTarget="conveyor_spot";
+    conveyorWalkTargetEntity=nil;
     
 }
 ResourceEntityKeys = {
@@ -58,6 +61,7 @@ function Conveyor:FindSpawnPoint()
     if ware == nil then
         Conveyor.ItemRandomPusherEntity = Entities:FindByName(nil,Conveyor.ItemRandomPusher)
         Conveyor.ProgressBarEntity = Entities:FindByName(nil,Conveyor.ProgressBar)
+        Conveyor.conveyorWalkTargetEntity = Entities:FindByName(nil,Conveyor.conveyorWalkTarget)
         ware = _G.WarehouseMain or nil
         return 0.2
     end
@@ -71,6 +75,7 @@ function Conveyor:onUpdate()
     if Conveyor.Active == false then
         return
     end
+    Conveyor.CurrentMaxResources = 2 + WarehouseMain.npc_manager.workerAmount
     if Conveyor.currentTime < 0 then
         Conveyor.currentTime = Conveyor.TimeUntilNextSpawn
        --print(_G.WarehouseMain.ResourcesDictionaryAmount["BasicResource"])
@@ -88,7 +93,7 @@ function Conveyor:onUpdate()
         
     else
         
-    if _G.WarehouseMain.ResourcesDictionaryAmount["BasicResource"] == nil or _G.WarehouseMain.ResourcesDictionaryAmount["BasicResource"] < 10 then
+    if _G.WarehouseMain.ResourcesDictionaryAmount["BasicResource"] == nil or _G.WarehouseMain.ResourcesDictionaryAmount["BasicResource"] < Conveyor.CurrentMaxResources then
         Conveyor.currentTime = Conveyor.currentTime - ware.UpdateTime
         conveyorTable.countdowntime=Conveyor.currentTime;
         conveyorTable.reachedmax = false;

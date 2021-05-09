@@ -118,6 +118,7 @@ Assembler = class({
                     --print(self.NextProduct.Tier,self.Tier)
                     if self.NextProduct ~= nil and self.NextProduct.Tier <= self.Tier then
                         vlua.delete(_G.WarehouseMain.Resources, self.CurrentProduct.Name)
+                        self.CurrentProductProgess = 0
                         self.Working = true
                     else
                         self.CurrentProduct = nil
@@ -202,6 +203,7 @@ Shredder = class({
         model = ModelResourceDictionary.basicshredder,
     },
 },{Name = ProductStringDictionary.Shredder;Price = 100;},Assembler)
+
 Refiner = class({
     UpgradeCostPrice = 250;
     BaseModel = {
@@ -226,16 +228,42 @@ Refiner = class({
         self.UpgradeCost = self.UpgradeCostPrice
         self.Tier = self.Tier + 1
     end;
+    CheckIO = function (self)
+        --DebugDrawBox(self.entity:GetAttachmentOrigin(self.Attachments[MachineAttachemntNames.IO]),Vector(-self.IORadius,-self.IORadius,-self.IORadius),Vector(self.IORadius,self.IORadius,self.IORadius),0,255,0,50,0.1)
+        local res =Entities:FindByClassnameNearest("prop_physics",self.entity:GetAttachmentOrigin(self.Attachments[MachineAttachemntNames.IO]),self.IORadius)
+        if res ~= nil then
+            --print("GETTING PRODUCT")
+            if vlua.contains(_G.WarehouseMain.Resources,res) then
+                --print("HAS Product")
+                if self.CurrentProduct == nil and _G.WarehouseMain.Resources[res].Resource.ProductionTable ~=nil and vlua.contains(_G.WarehouseMain.Resources[res].Resource.ProductionTable,self.Name) then
+                    --print("Is in Valid")
+                    self.CurrentProduct = _G.WarehouseMain.Resources[res]
+                    self.NextProduct = self.CurrentProduct.Resource:NextProduct(self.Name)()
+                    --DeepPrintTable(getmetatable(self.NextProduct))
+                    --print(self.NextProduct.Tier,self.Tier)
+                    if self.NextProduct ~= nil and self.NextProduct.Tier <= self.Tier then
+                        vlua.delete(_G.WarehouseMain.Resources, self.CurrentProduct.Name)
+                        self.CurrentProductProgess = 0
+                        self.Working = true
+                    else
+                        self.CurrentProduct = nil
+                        self.NextProduct = nil
+                        self.Working = false
+                    end
+                end
+            end
+        end
+    end;
     Upgrade = function (self)
-        self.Tier = self.Tier + 1
-        if MaterialGroupIndex[self.Tier-1] ~= nil then
-            self.entity:SetMaterialGroup(MaterialGroupIndex[self.Tier-1])
-        end
-        if self.Tier-1 == Tiers.Impossible then
-            _G.WarehouseMain:UnlockHomeWorld()
-        end
-        _G.WarehouseMain.Money:RemoveMoney(self.UpgradeCost)
-        self.UpgradeCost = self.UpgradeCost *2
+            self.Tier = self.Tier + 1
+            if MaterialGroupIndex[self.Tier-1] ~= nil then
+                self.entity:SetMaterialGroup(MaterialGroupIndex[self.Tier-1])
+            end
+            if self.Tier-1 == Tiers.Impossible then
+                _G.WarehouseMain:UnlockHomeWorld()
+            end
+            _G.WarehouseMain.Money:RemoveMoney(self.UpgradeCost)
+            self.UpgradeCost = self.UpgradeCost *2
     end
 },{Name = ProductStringDictionary.Refiner;Price = 250;},Assembler)
 
@@ -273,13 +301,19 @@ Seller = class({
                 
                 _G.WarehouseMain.Money:AddMoney(self.CurrentProduct.Resource.Worth)
 
+                
+                
+                
+
                 for key, value in pairs(self.workers) do
                     if value.job ~= nil and value.job.Product ~= nil and value.job.Product.entity == self.CurrentProduct.entity then
                         value.job:JobCompleted()
-                       --print("Getting New Job")
-                        WarehouseMain.npc_manager:GetNewJob(value)
+                        print("Getting New Job for worker ",value.entity:GetName())
+                        value.job = nil
+                        value:addedWorker()
                     end
                 end
+
                 self.CurrentProduct.entity:Destroy()
                 self.CurrentProduct = nil
             end
@@ -294,7 +328,9 @@ FinalClass = class({
 
     GoalNumber = 10;
     ResourceTable={
-
+        [FusionCore.Name]= 0;
+        [DarkMatter.Name]= 0;
+        [ImpossibleResource.Name]= 0;
     };
 
     constructor = function (self,ownEntity)

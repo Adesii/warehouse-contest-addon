@@ -117,6 +117,8 @@ function WarehouseMain:UnlockHomeWorld()
         EntFire(thisEntity,"@homeworld_door","Open","",2.0)
         WarehouseMain.Final.IsUnlocked = true
         WarehouseMain.HomeworldUnlocked = true
+        
+        SendToConsole("host_timescale 1.0")
     end
 end
 function AttachWrist()
